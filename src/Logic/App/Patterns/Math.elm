@@ -903,7 +903,7 @@ ifBool stack ctx =
     in
     action3Inputs stack ctx getBoolean getAny getAny action
 
-
+--xm1221'Test
 average : Array Iota -> CastingContext -> ActionResult
 average stack ctx =
     let
