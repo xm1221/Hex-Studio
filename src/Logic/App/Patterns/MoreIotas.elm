@@ -14,19 +14,23 @@ import Logic.App.Types exposing (ActionResult, CastingContext, Iota(..), Mishap(
 -- ============================================================
 
 stringEmpty : Array Iota -> CastingContext -> ActionResult
-stringEmpty = makeConstant (MString "")
+stringEmpty stack ctx =
+    { stack = stack, ctx = ctx, success = True }
 
 
 stringSpace : Array Iota -> CastingContext -> ActionResult
-stringSpace = makeConstant (MString " ")
+stringSpace stack ctx =
+    { stack = stack, ctx = ctx, success = True }
 
 
 stringComma : Array Iota -> CastingContext -> ActionResult
-stringComma = makeConstant (MString ",")
+stringComma stack ctx =
+    { stack = stack, ctx = ctx, success = True }
 
 
 stringNewline : Array Iota -> CastingContext -> ActionResult
-stringNewline = makeConstant (MString "\n")
+stringNewline stack ctx =
+    { stack = stack, ctx = ctx, success = True }
 
 
 stringBlockGet : Array Iota -> CastingContext -> ActionResult

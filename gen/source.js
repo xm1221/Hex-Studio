@@ -11757,15 +11757,7 @@ var $author$project$Logic$App$Patterns$Hexpose$createDisplay = F2(
 	});
 var $author$project$Logic$App$Patterns$Hexcellular$createProperty = F2(
 	function (stack, ctx) {
-		var action = function (_v0) {
-			return _Utils_Tuple2(
-				A2(
-					$elm$core$Array$repeat,
-					1,
-					$author$project$Logic$App$Types$Property('new_property')),
-				ctx);
-		};
-		return A3($author$project$Logic$App$Patterns$OperatorUtils$actionNoInput, stack, ctx, action);
+		return {ctx: ctx, stack: stack, success: true};
 	});
 var $author$project$Logic$App$Patterns$Hexpose$createStack = F2(
 	function (stack, ctx) {
@@ -14635,10 +14627,14 @@ var $author$project$Logic$App$Patterns$MoreIotas$stringChatPrefixSet = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getMString);
 	});
-var $author$project$Logic$App$Patterns$MoreIotas$stringComma = $author$project$Logic$App$Patterns$OperatorUtils$makeConstant(
-	$author$project$Logic$App$Types$MString(','));
-var $author$project$Logic$App$Patterns$MoreIotas$stringEmpty = $author$project$Logic$App$Patterns$OperatorUtils$makeConstant(
-	$author$project$Logic$App$Types$MString(''));
+var $author$project$Logic$App$Patterns$MoreIotas$stringComma = F2(
+	function (stack, ctx) {
+		return {ctx: ctx, stack: stack, success: true};
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringEmpty = F2(
+	function (stack, ctx) {
+		return {ctx: ctx, stack: stack, success: true};
+	});
 var $author$project$Logic$App$Patterns$MoreIotas$stringIota = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny);
@@ -14651,14 +14647,18 @@ var $author$project$Logic$App$Patterns$MoreIotas$stringNameSet = F2(
 	function (stack, ctx) {
 		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity, $author$project$Logic$App$Patterns$OperatorUtils$getMString);
 	});
-var $author$project$Logic$App$Patterns$MoreIotas$stringNewline = $author$project$Logic$App$Patterns$OperatorUtils$makeConstant(
-	$author$project$Logic$App$Types$MString('\n'));
+var $author$project$Logic$App$Patterns$MoreIotas$stringNewline = F2(
+	function (stack, ctx) {
+		return {ctx: ctx, stack: stack, success: true};
+	});
 var $author$project$Logic$App$Patterns$MoreIotas$stringParse = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getMString);
 	});
-var $author$project$Logic$App$Patterns$MoreIotas$stringSpace = $author$project$Logic$App$Patterns$OperatorUtils$makeConstant(
-	$author$project$Logic$App$Types$MString(' '));
+var $author$project$Logic$App$Patterns$MoreIotas$stringSpace = F2(
+	function (stack, ctx) {
+		return {ctx: ctx, stack: stack, success: true};
+	});
 var $author$project$Logic$App$Patterns$MoreIotas$stringSplit = F2(
 	function (stack, ctx) {
 		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getMString, $author$project$Logic$App$Patterns$OperatorUtils$getMString);

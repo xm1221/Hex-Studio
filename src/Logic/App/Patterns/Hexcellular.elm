@@ -12,11 +12,7 @@ import Logic.App.Types exposing (ActionResult, CastingContext, Iota(..), Mishap(
 -- In simulation, generates a placeholder Property key
 createProperty : Array Iota -> CastingContext -> ActionResult
 createProperty stack ctx =
-    let
-        action _ =
-            ( Array.repeat 1 (Property "new_property"), ctx )
-    in
-    actionNoInput stack ctx action
+    { stack = stack, ctx = ctx, success = True }
 
 
 -- observe_property: reads the current value of a Property
