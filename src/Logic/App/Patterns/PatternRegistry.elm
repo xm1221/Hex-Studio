@@ -556,6 +556,14 @@ patternRegistry =
     , { signature = "deaqq", internalName = "eval", action = noAction, displayName = "Hermes' Gambit", outputOptions = [], selectedOutput = Nothing, startDirection = Southeast }
     , { signature = "dadad", internalName = "for_each", action = noAction, displayName = "Thoth's Gambit", outputOptions = [], selectedOutput = Nothing, startDirection = Northeast }
     , { signature = "awaawa", internalName = "save_macro", action = saveMacro, displayName = "Save Macro", outputOptions = [], selectedOutput = Nothing, startDirection = Southeast }
+    ,{ signature = "adaw"                                    -- 你的签名
+      , internalName = "average"                               -- 内部名
+      , action = average                                       -- action 函数
+      , displayName = "xm1221's Test"                      -- 显示名
+      , outputOptions = []                                     -- 无额外输出选项
+      , selectedOutput = Nothing                               -- 无预选输出
+      , startDirection = East                                  -- 起始方向
+      }
     ]
         |> List.map
             (\pattern ->

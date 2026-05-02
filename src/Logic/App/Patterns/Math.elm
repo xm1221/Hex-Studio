@@ -902,3 +902,21 @@ ifBool stack ctx =
             )
     in
     action3Inputs stack ctx getBoolean getAny getAny action
+
+
+average : Array Iota -> CastingContext -> ActionResult
+average stack ctx =
+    let
+        action iota1 iota2 _ =
+            ( case (iota1, iota2) of
+                (Number n1, Number n2) ->
+                    Number ((n1 + n2) / 2)
+                        |> Array.repeat 1
+
+                _ ->
+                    Garbage CatastrophicFailure
+                        |> Array.repeat 1
+            , ctx
+            )
+    in
+    action2Inputs stack ctx getNumber getNumber action
