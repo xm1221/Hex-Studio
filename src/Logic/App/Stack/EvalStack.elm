@@ -514,7 +514,7 @@ forEach stack ctx =
         }
 
     else
-        case ( Maybe.map getIotaList maybeIota1, Maybe.map getIotaList maybeIota2 ) of
+        case ( Maybe.map getPatternOrIotaList maybeIota1, Maybe.map getIotaList maybeIota2 ) of
             ( Just iota1, Just iota2 ) ->
                 if iota1 == Nothing || iota2 == Nothing then
                     let
@@ -678,7 +678,7 @@ pureReduceFunc stack ctx =
 
 
 -- ============================================================
--- HexFlow range generation (pure math)
+-- HexFlow range generation + Thoth iteration
 -- ============================================================
 
 -- Helper: count how many top-of-stack items are Numbers (for option detection)
@@ -686,39 +686,46 @@ countTopNums : Array Iota -> Int
 countTopNums stack =
     if Array.length stack == 0 then
         0
-
     else
         case Array.get 0 stack of
             Just (Number _) ->
-                let next = Array.slice 1 (Array.length stack) stack
-                in 1 + countTopNums next
-
+                1 + countTopNums (Array.slice 1 (Array.length stack) stack)
             _ ->
                 0
 
 
--- for_range/cube: generate 3D cuboid vectors between pos1 and pos2
--- Stack (top=0): ..., [code], pos1, pos2(, option=0)
--- Consumes code + pos1 + pos2 + optional option, pushes IotaList of centers
+-- for_range/cube: generate 3D cuboid → Thoth-iterate code on each vector
+-- Stack: [code], pos1, pos2(, option)
 cubeRangeFunc : Array Iota -> CastingContext -> { stack : Array Iota, ctx : CastingContext, success : Bool, allStackStates : Array (Array Iota) }
 cubeRangeFunc stack ctx =
     let
-        optNums = countTopNums stack  -- 0 or 1 option numbers
+        optNums = countTopNums stack
         optOffset = min optNums 1
-        codeIdx = 2 + optOffset  -- code is 2+opt from top
+        codeIdx = 2 + optOffset
         pos1Idx = 1 + optOffset
         pos2Idx = 0 + optOffset
-        consumed = 3 + optOffset  -- code + pos1 + pos2 + option
+        consumed = 3 + optOffset
 
         maybeCode = Array.get codeIdx stack
         maybePos1 = Array.get pos1Idx stack
         maybePos2 = Array.get pos2Idx stack
         maybeOpt  = if optOffset > 0 then Array.get 0 stack else Nothing
-        newStack = Array.slice consumed (Array.length stack) stack
+        restStack = Array.slice consumed (Array.length stack) stack
     in
     case (maybeCode, maybePos1, maybePos2) of
-        (Just _, Just (Vector (x1, y1, z1)), Just (Vector (x2, y2, z2))) ->
+        (Just code, Just (Vector (x1, y1, z1)), Just (Vector (x2, y2, z2))) ->
             let
+                codeList =
+                    case code of
+                        IotaList l ->
+                            l
+
+                        PatternIota p _ ->
+                            Array.fromList [ PatternIota p False ]
+
+                        _ ->
+                            Array.empty
+
                 minX = round (min x1 x2)
                 maxX = round (max x1 x2)
                 minY = round (min y1 y2)
@@ -726,85 +733,104 @@ cubeRangeFunc stack ctx =
                 minZ = round (min z1 z2)
                 maxZ = round (max z1 z2)
 
-                centers : List Iota
                 centers =
-                    List.concatMap (\ix ->
-                        List.concatMap (\iy ->
-                            List.map (\iz ->
-                                Vector (toFloat ix + 0.5, toFloat iy + 0.5, toFloat iz + 0.5)
-                            ) (List.range minZ maxZ)
-                        ) (List.range minY maxY)
-                    ) (List.range minX maxX)
+                    List.concatMap (\ix -> List.concatMap (\iy ->
+                        List.map (\iz -> Vector (toFloat ix + 0.5, toFloat iy + 0.5, toFloat iz + 0.5))
+                            (List.range minZ maxZ))
+                        (List.range minY maxY))
+                        (List.range minX maxX)
 
                 sorted =
                     case maybeOpt of
-                        Just (Number opt) ->
-                            if round opt == 3 then List.reverse centers else centers
+                        Just (Number opt) -> if round opt == 3 then List.reverse centers else centers
                         _ -> centers
+
+                -- Thoth-iterate code over generated vectors
+                virtualStack = unshift (IotaList codeList) (unshift (IotaList (Array.fromList sorted)) restStack)
+                forEachResult = forEach virtualStack ctx
             in
-            { stack = unshift (IotaList (Array.fromList sorted)) newStack
-            , ctx = ctx
-            , success = True
-            , allStackStates = Array.fromList [ unshift (IotaList (Array.fromList sorted)) newStack ]
-            }
+            if forEachResult.success then
+                { stack = forEachResult.stack
+                , ctx = forEachResult.ctx
+                , success = True
+                , allStackStates = forEachResult.allStackStates
+                }
+            else
+                { stack = forEachResult.stack
+                , ctx = forEachResult.ctx
+                , success = False
+                , allStackStates = forEachResult.allStackStates
+                }
 
         _ ->
-            { stack = unshift (Garbage IncorrectIota) newStack
-            , ctx = ctx
-            , success = False
-            , allStackStates = Array.fromList [ unshift (Garbage IncorrectIota) newStack ]
+            { stack = unshift (Garbage IncorrectIota) restStack
+            , ctx = ctx, success = False
+            , allStackStates = Array.fromList [ unshift (Garbage IncorrectIota) restStack ]
             }
 
 
--- for_range/line: generate equally spaced points along line pos1→pos2
--- Stack (top=0): ..., [code], pos1, pos2(, option=2, sep)
--- Consumes code + pos1 + pos2 + optional option + optional sep, pushes IotaList
+-- for_range/line: generate line points → Thoth-iterate code on each point
 lineRangeFunc : Array Iota -> CastingContext -> { stack : Array Iota, ctx : CastingContext, success : Bool, allStackStates : Array (Array Iota) }
 lineRangeFunc stack ctx =
     let
-        optNums = countTopNums stack  -- 0, 1, or 2
+        optNums = countTopNums stack
         optOffset = min optNums 2
         codeIdx = 2 + optOffset
         pos1Idx = 1 + optOffset
         pos2Idx = 0 + optOffset
         consumed = 3 + optOffset
 
+        maybeCode = Array.get codeIdx stack
         maybePos1 = Array.get pos1Idx stack
         maybePos2 = Array.get pos2Idx stack
-        -- sep: if optOffset==2, it's at index 0; if optOffset==1, option is at 0 and we use default; if 0, default
         maybeSep  = if optOffset == 2 then Array.get 0 stack else Nothing
-        newStack = Array.slice consumed (Array.length stack) stack
+        restStack = Array.slice consumed (Array.length stack) stack
     in
-    case (maybePos1, maybePos2) of
-        (Just (Vector (x1, y1, z1)), Just (Vector (x2, y2, z2))) ->
+    case (maybeCode, maybePos1, maybePos2) of
+        (Just code, Just (Vector (x1, y1, z1)), Just (Vector (x2, y2, z2))) ->
             let
+                codeList =
+                    case code of
+                        IotaList l ->
+                            l
+
+                        PatternIota p _ ->
+                            Array.fromList [ PatternIota p False ]
+
+                        _ ->
+                            Array.empty
+
                 dx = x2 - x1
                 dy = y2 - y1
                 dz = z2 - z1
-
                 sep =
                     case maybeSep of
-                        Just (Number s) -> round s
-                        _ -> ceiling (max (max (abs dx) (abs dy)) (abs dz))
+                        Just (Number s) ->
+                            round s
+
+                        _ ->
+                            ceiling (max (max (abs dx) (abs dy)) (abs dz))
 
                 safeSep = max 1 (min 10000 sep)
 
-                points : List Iota
-                points =
-                    List.map (\i ->
-                        let t = toFloat i / toFloat safeSep
-                        in Vector (x1 + dx * t, y1 + dy * t, z1 + dz * t)
-                    ) (List.range 0 safeSep)
+                points = List.map (\i ->
+                    let t = toFloat i / toFloat safeSep
+                    in Vector (x1 + dx * t, y1 + dy * t, z1 + dz * t))
+                    (List.range 0 safeSep)
+
+                -- Thoth-iterate code over generated points
+                virtualStack = unshift (IotaList codeList) (unshift (IotaList (Array.fromList points)) restStack)
+                forEachResult = forEach virtualStack ctx
             in
-            { stack = unshift (IotaList (Array.fromList points)) newStack
-            , ctx = ctx
-            , success = True
-            , allStackStates = Array.fromList [ unshift (IotaList (Array.fromList points)) newStack ]
-            }
+            if forEachResult.success then
+                { stack = forEachResult.stack, ctx = forEachResult.ctx, success = True
+                , allStackStates = forEachResult.allStackStates }
+            else
+                { stack = forEachResult.stack, ctx = forEachResult.ctx, success = False
+                , allStackStates = forEachResult.allStackStates }
 
         _ ->
-            { stack = unshift (Garbage IncorrectIota) newStack
-            , ctx = ctx
-            , success = False
-            , allStackStates = Array.fromList [ unshift (Garbage IncorrectIota) newStack ]
+            { stack = unshift (Garbage IncorrectIota) restStack
+            , ctx = ctx, success = False
+            , allStackStates = Array.fromList [ unshift (Garbage IncorrectIota) restStack ]
             }

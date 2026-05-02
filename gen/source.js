@@ -7666,6 +7666,12 @@ var $author$project$Logic$App$Types$OpenParenthesis = function (a) {
 	return {$: 'OpenParenthesis', a: a};
 };
 var $author$project$Logic$App$Types$Succeeded = {$: 'Succeeded'};
+var $author$project$Logic$App$Types$Vector = function (a) {
+	return {$: 'Vector', a: a};
+};
+var $elm$core$Basics$abs = function (n) {
+	return (n < 0) ? (-n) : n;
+};
 var $elm$core$Array$getHelp = F3(
 	function (shift, index, tree) {
 		getHelp:
@@ -7800,9 +7806,6 @@ var $author$project$Logic$App$Stack$EvalStack$addEscapedIotaToStack = F2(
 			return A2($author$project$Logic$App$Utils$Utils$unshift, iota, stack);
 		}
 	});
-var $author$project$Logic$App$Types$Vector = function (a) {
-	return {$: 'Vector', a: a};
-};
 var $elm$core$List$concatMap = F2(
 	function (f, list) {
 		return $elm$core$List$concat(
@@ -7814,119 +7817,17 @@ var $author$project$Logic$App$Stack$EvalStack$countTopNums = function (stack) {
 	} else {
 		var _v0 = A2($elm$core$Array$get, 0, stack);
 		if ((_v0.$ === 'Just') && (_v0.a.$ === 'Number')) {
-			var next = A3(
-				$elm$core$Array$slice,
-				1,
-				$elm$core$Array$length(stack),
-				stack);
-			return 1 + $author$project$Logic$App$Stack$EvalStack$countTopNums(next);
+			return 1 + $author$project$Logic$App$Stack$EvalStack$countTopNums(
+				A3(
+					$elm$core$Array$slice,
+					1,
+					$elm$core$Array$length(stack),
+					stack));
 		} else {
 			return 0;
 		}
 	}
 };
-var $elm$core$Basics$round = _Basics_round;
-var $author$project$Logic$App$Stack$EvalStack$cubeRangeFunc = F2(
-	function (stack, ctx) {
-		var optNums = $author$project$Logic$App$Stack$EvalStack$countTopNums(stack);
-		var optOffset = A2($elm$core$Basics$min, optNums, 1);
-		var pos1Idx = 1 + optOffset;
-		var pos2Idx = 0 + optOffset;
-		var maybePos2 = A2($elm$core$Array$get, pos2Idx, stack);
-		var maybePos1 = A2($elm$core$Array$get, pos1Idx, stack);
-		var maybeOpt = (optOffset > 0) ? A2($elm$core$Array$get, 0, stack) : $elm$core$Maybe$Nothing;
-		var consumed = 3 + optOffset;
-		var newStack = A3(
-			$elm$core$Array$slice,
-			consumed,
-			$elm$core$Array$length(stack),
-			stack);
-		var codeIdx = 2 + optOffset;
-		var maybeCode = A2($elm$core$Array$get, codeIdx, stack);
-		var _v0 = _Utils_Tuple3(maybeCode, maybePos1, maybePos2);
-		if (((((_v0.a.$ === 'Just') && (_v0.b.$ === 'Just')) && (_v0.b.a.$ === 'Vector')) && (_v0.c.$ === 'Just')) && (_v0.c.a.$ === 'Vector')) {
-			var _v1 = _v0.b.a.a;
-			var x1 = _v1.a;
-			var y1 = _v1.b;
-			var z1 = _v1.c;
-			var _v2 = _v0.c.a.a;
-			var x2 = _v2.a;
-			var y2 = _v2.b;
-			var z2 = _v2.c;
-			var minZ = $elm$core$Basics$round(
-				A2($elm$core$Basics$min, z1, z2));
-			var minY = $elm$core$Basics$round(
-				A2($elm$core$Basics$min, y1, y2));
-			var minX = $elm$core$Basics$round(
-				A2($elm$core$Basics$min, x1, x2));
-			var maxZ = $elm$core$Basics$round(
-				A2($elm$core$Basics$max, z1, z2));
-			var maxY = $elm$core$Basics$round(
-				A2($elm$core$Basics$max, y1, y2));
-			var maxX = $elm$core$Basics$round(
-				A2($elm$core$Basics$max, x1, x2));
-			var centers = A2(
-				$elm$core$List$concatMap,
-				function (ix) {
-					return A2(
-						$elm$core$List$concatMap,
-						function (iy) {
-							return A2(
-								$elm$core$List$map,
-								function (iz) {
-									return $author$project$Logic$App$Types$Vector(
-										_Utils_Tuple3(ix + 0.5, iy + 0.5, iz + 0.5));
-								},
-								A2($elm$core$List$range, minZ, maxZ));
-						},
-						A2($elm$core$List$range, minY, maxY));
-				},
-				A2($elm$core$List$range, minX, maxX));
-			var sorted = function () {
-				if ((maybeOpt.$ === 'Just') && (maybeOpt.a.$ === 'Number')) {
-					var opt = maybeOpt.a.a;
-					return ($elm$core$Basics$round(opt) === 3) ? $elm$core$List$reverse(centers) : centers;
-				} else {
-					return centers;
-				}
-			}();
-			return {
-				allStackStates: $elm$core$Array$fromList(
-					_List_fromArray(
-						[
-							A2(
-							$author$project$Logic$App$Utils$Utils$unshift,
-							$author$project$Logic$App$Types$IotaList(
-								$elm$core$Array$fromList(sorted)),
-							newStack)
-						])),
-				ctx: ctx,
-				stack: A2(
-					$author$project$Logic$App$Utils$Utils$unshift,
-					$author$project$Logic$App$Types$IotaList(
-						$elm$core$Array$fromList(sorted)),
-					newStack),
-				success: true
-			};
-		} else {
-			return {
-				allStackStates: $elm$core$Array$fromList(
-					_List_fromArray(
-						[
-							A2(
-							$author$project$Logic$App$Utils$Utils$unshift,
-							$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota),
-							newStack)
-						])),
-				ctx: ctx,
-				stack: A2(
-					$author$project$Logic$App$Utils$Utils$unshift,
-					$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota),
-					newStack),
-				success: false
-			};
-		}
-	});
 var $elm$core$Array$filter = F2(
 	function (isGood, array) {
 		return $elm$core$Array$fromList(
@@ -7983,102 +7884,6 @@ var $author$project$Logic$App$Utils$Utils$isJust = function (maybe) {
 		return false;
 	}
 };
-var $elm$core$Basics$abs = function (n) {
-	return (n < 0) ? (-n) : n;
-};
-var $author$project$Logic$App$Stack$EvalStack$lineRangeFunc = F2(
-	function (stack, ctx) {
-		var optNums = $author$project$Logic$App$Stack$EvalStack$countTopNums(stack);
-		var optOffset = A2($elm$core$Basics$min, optNums, 2);
-		var pos1Idx = 1 + optOffset;
-		var pos2Idx = 0 + optOffset;
-		var maybeSep = (optOffset === 2) ? A2($elm$core$Array$get, 0, stack) : $elm$core$Maybe$Nothing;
-		var maybePos2 = A2($elm$core$Array$get, pos2Idx, stack);
-		var maybePos1 = A2($elm$core$Array$get, pos1Idx, stack);
-		var consumed = 3 + optOffset;
-		var newStack = A3(
-			$elm$core$Array$slice,
-			consumed,
-			$elm$core$Array$length(stack),
-			stack);
-		var codeIdx = 2 + optOffset;
-		var _v0 = _Utils_Tuple2(maybePos1, maybePos2);
-		if ((((_v0.a.$ === 'Just') && (_v0.a.a.$ === 'Vector')) && (_v0.b.$ === 'Just')) && (_v0.b.a.$ === 'Vector')) {
-			var _v1 = _v0.a.a.a;
-			var x1 = _v1.a;
-			var y1 = _v1.b;
-			var z1 = _v1.c;
-			var _v2 = _v0.b.a.a;
-			var x2 = _v2.a;
-			var y2 = _v2.b;
-			var z2 = _v2.c;
-			var dz = z2 - z1;
-			var dy = y2 - y1;
-			var dx = x2 - x1;
-			var sep = function () {
-				if ((maybeSep.$ === 'Just') && (maybeSep.a.$ === 'Number')) {
-					var s = maybeSep.a.a;
-					return $elm$core$Basics$round(s);
-				} else {
-					return $elm$core$Basics$ceiling(
-						A2(
-							$elm$core$Basics$max,
-							A2(
-								$elm$core$Basics$max,
-								$elm$core$Basics$abs(dx),
-								$elm$core$Basics$abs(dy)),
-							$elm$core$Basics$abs(dz)));
-				}
-			}();
-			var safeSep = A2(
-				$elm$core$Basics$max,
-				1,
-				A2($elm$core$Basics$min, 10000, sep));
-			var points = A2(
-				$elm$core$List$map,
-				function (i) {
-					var t = i / safeSep;
-					return $author$project$Logic$App$Types$Vector(
-						_Utils_Tuple3(x1 + (dx * t), y1 + (dy * t), z1 + (dz * t)));
-				},
-				A2($elm$core$List$range, 0, safeSep));
-			return {
-				allStackStates: $elm$core$Array$fromList(
-					_List_fromArray(
-						[
-							A2(
-							$author$project$Logic$App$Utils$Utils$unshift,
-							$author$project$Logic$App$Types$IotaList(
-								$elm$core$Array$fromList(points)),
-							newStack)
-						])),
-				ctx: ctx,
-				stack: A2(
-					$author$project$Logic$App$Utils$Utils$unshift,
-					$author$project$Logic$App$Types$IotaList(
-						$elm$core$Array$fromList(points)),
-					newStack),
-				success: true
-			};
-		} else {
-			return {
-				allStackStates: $elm$core$Array$fromList(
-					_List_fromArray(
-						[
-							A2(
-							$author$project$Logic$App$Utils$Utils$unshift,
-							$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota),
-							newStack)
-						])),
-				ctx: ctx,
-				stack: A2(
-					$author$project$Logic$App$Utils$Utils$unshift,
-					$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota),
-					newStack),
-				success: false
-			};
-		}
-	});
 var $elm$core$Elm$JsArray$map = _JsArray_map;
 var $elm$core$Array$map = F2(
 	function (func, _v0) {
@@ -8158,11 +7963,12 @@ var $author$project$Logic$App$Patterns$OperatorUtils$moveNothingsToFront = funct
 };
 var $elm_community$array_extra$Array$Extra$reverseToList = A2($elm$core$Array$foldl, $elm$core$List$cons, _List_Nil);
 var $elm_community$array_extra$Array$Extra$reverse = A2($elm$core$Basics$composeR, $elm_community$array_extra$Array$Extra$reverseToList, $elm$core$Array$fromList);
+var $elm$core$Basics$round = _Basics_round;
 var $author$project$Logic$App$Stack$EvalStack$applyPatternToStack = F4(
 	function (stack, ctx, pattern, index) {
-		var _v15 = A2($elm$core$Array$get, 0, stack);
-		if ((_v15.$ === 'Just') && (_v15.a.$ === 'OpenParenthesis')) {
-			var list = _v15.a.a;
+		var _v25 = A2($elm$core$Array$get, 0, stack);
+		if ((_v25.$ === 'Just') && (_v25.a.$ === 'OpenParenthesis')) {
+			var list = _v25.a.a;
 			var numberOfOpenParen = 1 + $elm$core$Array$length(
 				A2(
 					$elm$core$Array$filter,
@@ -8511,10 +8317,10 @@ var $author$project$Logic$App$Stack$EvalStack$applyPatternToStack = F4(
 															actionResult.allStackStates)
 													};
 												} else {
-													var _v19 = A2($elm$core$Dict$get, pattern.signature, ctx.macros);
-													if (_v19.$ === 'Just') {
-														var _v20 = _v19.a;
-														var iota = _v20.c;
+													var _v29 = A2($elm$core$Dict$get, pattern.signature, ctx.macros);
+													if (_v29.$ === 'Just') {
+														var _v30 = _v29.a;
+														var iota = _v30.c;
 														var actionResult = A2(
 															$author$project$Logic$App$Stack$EvalStack$eval,
 															A2($author$project$Logic$App$Utils$Utils$unshift, iota, stack),
@@ -8598,24 +8404,24 @@ var $author$project$Logic$App$Stack$EvalStack$applyToStackLoop = F7(
 			var stack = stackResultTuple.a;
 			var resultArray = stackResultTuple.b;
 			var maybeIota = function () {
-				var _v13 = $elm$core$List$head(patterns);
-				if ((_v13.$ === 'Just') && (_v13.a.$ === 'PatternIota')) {
-					var _v14 = _v13.a;
-					var pattern = _v14.a;
-					var considered = _v14.b;
+				var _v23 = $elm$core$List$head(patterns);
+				if ((_v23.$ === 'Just') && (_v23.a.$ === 'PatternIota')) {
+					var _v24 = _v23.a;
+					var pattern = _v24.a;
+					var considered = _v24.b;
 					return (pattern.internalName === 'constant') ? A2(
 						$elm$core$Array$get,
 						0,
 						A2(pattern.action, $elm$core$Array$empty, ctx).stack) : $elm$core$Maybe$Just(
 						A2($author$project$Logic$App$Types$PatternIota, pattern, considered));
 				} else {
-					var head = _v13;
+					var head = _v23;
 					return head;
 				}
 			}();
 			var introspection = function () {
-				var _v12 = A2($elm$core$Array$get, 0, stack);
-				if ((_v12.$ === 'Just') && (_v12.a.$ === 'OpenParenthesis')) {
+				var _v22 = A2($elm$core$Array$get, 0, stack);
+				if ((_v22.$ === 'Just') && (_v22.a.$ === 'OpenParenthesis')) {
 					return true;
 				} else {
 					return false;
@@ -8625,8 +8431,8 @@ var $author$project$Logic$App$Stack$EvalStack$applyToStackLoop = F7(
 				return {ctx: ctx, error: false, halted: false, resultArray: resultArray, stack: stack, timeline: timeline};
 			} else {
 				if (maybeIota.a.$ === 'PatternIota') {
-					var _v11 = maybeIota.a;
-					var pattern = _v11.a;
+					var _v21 = maybeIota.a;
+					var pattern = _v21.a;
 					if (considerThis) {
 						var applyResult = _Utils_Tuple2(
 							A2(
@@ -8742,6 +8548,116 @@ var $author$project$Logic$App$Stack$EvalStack$applyToStackStopAtErrorOrHalt = F3
 			false,
 			true);
 	});
+var $author$project$Logic$App$Stack$EvalStack$cubeRangeFunc = F2(
+	function (stack, ctx) {
+		var optNums = $author$project$Logic$App$Stack$EvalStack$countTopNums(stack);
+		var optOffset = A2($elm$core$Basics$min, optNums, 1);
+		var pos1Idx = 1 + optOffset;
+		var pos2Idx = 0 + optOffset;
+		var maybePos2 = A2($elm$core$Array$get, pos2Idx, stack);
+		var maybePos1 = A2($elm$core$Array$get, pos1Idx, stack);
+		var maybeOpt = (optOffset > 0) ? A2($elm$core$Array$get, 0, stack) : $elm$core$Maybe$Nothing;
+		var consumed = 3 + optOffset;
+		var restStack = A3(
+			$elm$core$Array$slice,
+			consumed,
+			$elm$core$Array$length(stack),
+			stack);
+		var codeIdx = 2 + optOffset;
+		var maybeCode = A2($elm$core$Array$get, codeIdx, stack);
+		var _v15 = _Utils_Tuple3(maybeCode, maybePos1, maybePos2);
+		if (((((_v15.a.$ === 'Just') && (_v15.b.$ === 'Just')) && (_v15.b.a.$ === 'Vector')) && (_v15.c.$ === 'Just')) && (_v15.c.a.$ === 'Vector')) {
+			var code = _v15.a.a;
+			var _v16 = _v15.b.a.a;
+			var x1 = _v16.a;
+			var y1 = _v16.b;
+			var z1 = _v16.c;
+			var _v17 = _v15.c.a.a;
+			var x2 = _v17.a;
+			var y2 = _v17.b;
+			var z2 = _v17.c;
+			var minZ = $elm$core$Basics$round(
+				A2($elm$core$Basics$min, z1, z2));
+			var minY = $elm$core$Basics$round(
+				A2($elm$core$Basics$min, y1, y2));
+			var minX = $elm$core$Basics$round(
+				A2($elm$core$Basics$min, x1, x2));
+			var maxZ = $elm$core$Basics$round(
+				A2($elm$core$Basics$max, z1, z2));
+			var maxY = $elm$core$Basics$round(
+				A2($elm$core$Basics$max, y1, y2));
+			var maxX = $elm$core$Basics$round(
+				A2($elm$core$Basics$max, x1, x2));
+			var codeList = function () {
+				switch (code.$) {
+					case 'IotaList':
+						var l = code.a;
+						return l;
+					case 'PatternIota':
+						var p = code.a;
+						return $elm$core$Array$fromList(
+							_List_fromArray(
+								[
+									A2($author$project$Logic$App$Types$PatternIota, p, false)
+								]));
+					default:
+						return $elm$core$Array$empty;
+				}
+			}();
+			var centers = A2(
+				$elm$core$List$concatMap,
+				function (ix) {
+					return A2(
+						$elm$core$List$concatMap,
+						function (iy) {
+							return A2(
+								$elm$core$List$map,
+								function (iz) {
+									return $author$project$Logic$App$Types$Vector(
+										_Utils_Tuple3(ix + 0.5, iy + 0.5, iz + 0.5));
+								},
+								A2($elm$core$List$range, minZ, maxZ));
+						},
+						A2($elm$core$List$range, minY, maxY));
+				},
+				A2($elm$core$List$range, minX, maxX));
+			var sorted = function () {
+				if ((maybeOpt.$ === 'Just') && (maybeOpt.a.$ === 'Number')) {
+					var opt = maybeOpt.a.a;
+					return ($elm$core$Basics$round(opt) === 3) ? $elm$core$List$reverse(centers) : centers;
+				} else {
+					return centers;
+				}
+			}();
+			var virtualStack = A2(
+				$author$project$Logic$App$Utils$Utils$unshift,
+				$author$project$Logic$App$Types$IotaList(codeList),
+				A2(
+					$author$project$Logic$App$Utils$Utils$unshift,
+					$author$project$Logic$App$Types$IotaList(
+						$elm$core$Array$fromList(sorted)),
+					restStack));
+			var forEachResult = A2($author$project$Logic$App$Stack$EvalStack$forEach, virtualStack, ctx);
+			return forEachResult.success ? {allStackStates: forEachResult.allStackStates, ctx: forEachResult.ctx, stack: forEachResult.stack, success: true} : {allStackStates: forEachResult.allStackStates, ctx: forEachResult.ctx, stack: forEachResult.stack, success: false};
+		} else {
+			return {
+				allStackStates: $elm$core$Array$fromList(
+					_List_fromArray(
+						[
+							A2(
+							$author$project$Logic$App$Utils$Utils$unshift,
+							$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota),
+							restStack)
+						])),
+				ctx: ctx,
+				stack: A2(
+					$author$project$Logic$App$Utils$Utils$unshift,
+					$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota),
+					restStack),
+				success: false
+			};
+		}
+	});
 var $author$project$Logic$App$Stack$EvalStack$eval = F2(
 	function (stack, ctx) {
 		var newStack = A3(
@@ -8769,8 +8685,8 @@ var $author$project$Logic$App$Stack$EvalStack$eval = F2(
 			};
 		} else {
 			var iota = maybeIota.a;
-			var _v7 = $author$project$Logic$App$Patterns$OperatorUtils$getPatternOrIotaList(iota);
-			if (_v7.$ === 'Nothing') {
+			var _v12 = $author$project$Logic$App$Patterns$OperatorUtils$getPatternOrIotaList(iota);
+			if (_v12.$ === 'Nothing') {
 				return {
 					allStackStates: $elm$core$Array$fromList(
 						_List_fromArray(
@@ -8886,12 +8802,12 @@ var $author$project$Logic$App$Stack$EvalStack$forEach = F2(
 				success: false
 			};
 		} else {
-			var _v2 = _Utils_Tuple2(
-				A2($elm$core$Maybe$map, $author$project$Logic$App$Patterns$OperatorUtils$getIotaList, maybeIota1),
+			var _v7 = _Utils_Tuple2(
+				A2($elm$core$Maybe$map, $author$project$Logic$App$Patterns$OperatorUtils$getPatternOrIotaList, maybeIota1),
 				A2($elm$core$Maybe$map, $author$project$Logic$App$Patterns$OperatorUtils$getIotaList, maybeIota2));
-			if ((_v2.a.$ === 'Just') && (_v2.b.$ === 'Just')) {
-				var iota1 = _v2.a.a;
-				var iota2 = _v2.b.a;
+			if ((_v7.a.$ === 'Just') && (_v7.b.$ === 'Just')) {
+				var iota1 = _v7.a.a;
+				var iota2 = _v7.b.a;
 				if (_Utils_eq(iota1, $elm$core$Maybe$Nothing) || _Utils_eq(iota2, $elm$core$Maybe$Nothing)) {
 					var newNewStack = A2(
 						$elm$core$Array$append,
@@ -8917,10 +8833,10 @@ var $author$project$Logic$App$Stack$EvalStack$forEach = F2(
 						success: false
 					};
 				} else {
-					var _v3 = _Utils_Tuple2(iota1, iota2);
-					if ((((_v3.a.$ === 'Just') && (_v3.a.a.$ === 'IotaList')) && (_v3.b.$ === 'Just')) && (_v3.b.a.$ === 'IotaList')) {
-						var patternList = _v3.a.a.a;
-						var iotaList = _v3.b.a.a;
+					var _v8 = _Utils_Tuple2(iota1, iota2);
+					if ((((_v8.a.$ === 'Just') && (_v8.a.a.$ === 'IotaList')) && (_v8.b.$ === 'Just')) && (_v8.b.a.$ === 'IotaList')) {
+						var patternList = _v8.a.a.a;
+						var iotaList = _v8.b.a.a;
 						var applyResult = A3(
 							$elm$core$Array$foldl,
 							F2(
@@ -8929,9 +8845,9 @@ var $author$project$Logic$App$Stack$EvalStack$forEach = F2(
 										return accumulator;
 									} else {
 										var thothList = function () {
-											var _v5 = A2($elm$core$Array$get, 0, accumulator.stack);
-											if ((_v5.$ === 'Just') && (_v5.a.$ === 'IotaList')) {
-												var list = _v5.a.a;
+											var _v10 = A2($elm$core$Array$get, 0, accumulator.stack);
+											if ((_v10.$ === 'Just') && (_v10.a.$ === 'IotaList')) {
+												var list = _v10.a.a;
 												return list;
 											} else {
 												return $elm$core$Array$empty;
@@ -9044,6 +8960,109 @@ var $author$project$Logic$App$Stack$EvalStack$forEach = F2(
 					success: false
 				};
 			}
+		}
+	});
+var $author$project$Logic$App$Stack$EvalStack$lineRangeFunc = F2(
+	function (stack, ctx) {
+		var optNums = $author$project$Logic$App$Stack$EvalStack$countTopNums(stack);
+		var optOffset = A2($elm$core$Basics$min, optNums, 2);
+		var pos1Idx = 1 + optOffset;
+		var pos2Idx = 0 + optOffset;
+		var maybeSep = (optOffset === 2) ? A2($elm$core$Array$get, 0, stack) : $elm$core$Maybe$Nothing;
+		var maybePos2 = A2($elm$core$Array$get, pos2Idx, stack);
+		var maybePos1 = A2($elm$core$Array$get, pos1Idx, stack);
+		var consumed = 3 + optOffset;
+		var restStack = A3(
+			$elm$core$Array$slice,
+			consumed,
+			$elm$core$Array$length(stack),
+			stack);
+		var codeIdx = 2 + optOffset;
+		var maybeCode = A2($elm$core$Array$get, codeIdx, stack);
+		var _v2 = _Utils_Tuple3(maybeCode, maybePos1, maybePos2);
+		if (((((_v2.a.$ === 'Just') && (_v2.b.$ === 'Just')) && (_v2.b.a.$ === 'Vector')) && (_v2.c.$ === 'Just')) && (_v2.c.a.$ === 'Vector')) {
+			var code = _v2.a.a;
+			var _v3 = _v2.b.a.a;
+			var x1 = _v3.a;
+			var y1 = _v3.b;
+			var z1 = _v3.c;
+			var _v4 = _v2.c.a.a;
+			var x2 = _v4.a;
+			var y2 = _v4.b;
+			var z2 = _v4.c;
+			var dz = z2 - z1;
+			var dy = y2 - y1;
+			var dx = x2 - x1;
+			var sep = function () {
+				if ((maybeSep.$ === 'Just') && (maybeSep.a.$ === 'Number')) {
+					var s = maybeSep.a.a;
+					return $elm$core$Basics$round(s);
+				} else {
+					return $elm$core$Basics$ceiling(
+						A2(
+							$elm$core$Basics$max,
+							A2(
+								$elm$core$Basics$max,
+								$elm$core$Basics$abs(dx),
+								$elm$core$Basics$abs(dy)),
+							$elm$core$Basics$abs(dz)));
+				}
+			}();
+			var safeSep = A2(
+				$elm$core$Basics$max,
+				1,
+				A2($elm$core$Basics$min, 10000, sep));
+			var points = A2(
+				$elm$core$List$map,
+				function (i) {
+					var t = i / safeSep;
+					return $author$project$Logic$App$Types$Vector(
+						_Utils_Tuple3(x1 + (dx * t), y1 + (dy * t), z1 + (dz * t)));
+				},
+				A2($elm$core$List$range, 0, safeSep));
+			var codeList = function () {
+				switch (code.$) {
+					case 'IotaList':
+						var l = code.a;
+						return l;
+					case 'PatternIota':
+						var p = code.a;
+						return $elm$core$Array$fromList(
+							_List_fromArray(
+								[
+									A2($author$project$Logic$App$Types$PatternIota, p, false)
+								]));
+					default:
+						return $elm$core$Array$empty;
+				}
+			}();
+			var virtualStack = A2(
+				$author$project$Logic$App$Utils$Utils$unshift,
+				$author$project$Logic$App$Types$IotaList(codeList),
+				A2(
+					$author$project$Logic$App$Utils$Utils$unshift,
+					$author$project$Logic$App$Types$IotaList(
+						$elm$core$Array$fromList(points)),
+					restStack));
+			var forEachResult = A2($author$project$Logic$App$Stack$EvalStack$forEach, virtualStack, ctx);
+			return forEachResult.success ? {allStackStates: forEachResult.allStackStates, ctx: forEachResult.ctx, stack: forEachResult.stack, success: true} : {allStackStates: forEachResult.allStackStates, ctx: forEachResult.ctx, stack: forEachResult.stack, success: false};
+		} else {
+			return {
+				allStackStates: $elm$core$Array$fromList(
+					_List_fromArray(
+						[
+							A2(
+							$author$project$Logic$App$Utils$Utils$unshift,
+							$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota),
+							restStack)
+						])),
+				ctx: ctx,
+				stack: A2(
+					$author$project$Logic$App$Utils$Utils$unshift,
+					$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota),
+					restStack),
+				success: false
+			};
 		}
 	});
 var $author$project$Logic$App$Stack$EvalStack$pureReduceFunc = F2(
