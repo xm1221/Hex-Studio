@@ -199,7 +199,7 @@ applyPatternToStack stack ctx pattern index =
 
         _ ->
             -- if no intro on top
-            if pattern.internalName == "escape" then
+            if pattern.internalName == "escape" || pattern.internalName == "weak_escape" then
                 { stack = stack, result = Succeeded, ctx = ctx, considerNext = True, timeline = Array.fromList [ { stack = stack, patternIndex = index } ] }
 
             else if pattern.internalName == "close_paren" then
@@ -228,9 +228,143 @@ applyPatternToStack stack ctx pattern index =
                     }
 
             else if pattern.internalName == "for_each" then
+                -- Thoth's Gambit
                 let
                     actionResult =
                         forEach stack ctx
+                in
+                if actionResult.success == True then
+                    { stack = actionResult.stack
+                    , result = Succeeded
+                    , ctx = actionResult.ctx
+                    , considerNext = False
+                    , timeline = Array.map (\x -> { stack = x, patternIndex = index }) actionResult.allStackStates
+                    }
+
+                else
+                    { stack = actionResult.stack
+                    , result = Failed
+                    , ctx = actionResult.ctx
+                    , considerNext = False
+                    , timeline = Array.map (\x -> { stack = x, patternIndex = index }) actionResult.allStackStates
+                    }
+
+            -- hexflow Thoth-like meta-patterns (simulated as for_each)
+            else if pattern.internalName == "pure_map" then
+                -- Thoth-like: apply code to each data element
+                let
+                    actionResult =
+                        forEach stack ctx
+                in
+                if actionResult.success == True then
+                    { stack = actionResult.stack
+                    , result = Succeeded
+                    , ctx = actionResult.ctx
+                    , considerNext = False
+                    , timeline = Array.map (\x -> { stack = x, patternIndex = index }) actionResult.allStackStates
+                    }
+
+                else
+                    { stack = actionResult.stack
+                    , result = Failed
+                    , ctx = actionResult.ctx
+                    , considerNext = False
+                    , timeline = Array.map (\x -> { stack = x, patternIndex = index }) actionResult.allStackStates
+                    }
+
+            else if List.member pattern.internalName [ "for_range/cube", "for_range/cube/pure" ] then
+                -- Generate 3D cuboid vectors
+                let
+                    actionResult =
+                        cubeRangeFunc stack ctx
+                in
+                if actionResult.success == True then
+                    { stack = actionResult.stack
+                    , result = Succeeded
+                    , ctx = actionResult.ctx
+                    , considerNext = False
+                    , timeline = Array.map (\x -> { stack = x, patternIndex = index }) actionResult.allStackStates
+                    }
+
+                else
+                    { stack = actionResult.stack
+                    , result = Failed
+                    , ctx = actionResult.ctx
+                    , considerNext = False
+                    , timeline = Array.map (\x -> { stack = x, patternIndex = index }) actionResult.allStackStates
+                    }
+
+            else if List.member pattern.internalName [ "for_range/line", "for_range/line/pure" ] then
+                -- Generate points along line
+                let
+                    actionResult =
+                        lineRangeFunc stack ctx
+                in
+                if actionResult.success == True then
+                    { stack = actionResult.stack
+                    , result = Succeeded
+                    , ctx = actionResult.ctx
+                    , considerNext = False
+                    , timeline = Array.map (\x -> { stack = x, patternIndex = index }) actionResult.allStackStates
+                    }
+
+                else
+                    { stack = actionResult.stack
+                    , result = Failed
+                    , ctx = actionResult.ctx
+                    , considerNext = False
+                    , timeline = Array.map (\x -> { stack = x, patternIndex = index }) actionResult.allStackStates
+                    }
+
+            else if List.member pattern.internalName [ "for_range/floodfill", "for_range/floodfill/pure" ] then
+                -- Floodfill needs world access; fallback to forEach
+                let
+                    actionResult =
+                        forEach stack ctx
+                in
+                if actionResult.success == True then
+                    { stack = actionResult.stack
+                    , result = Succeeded
+                    , ctx = actionResult.ctx
+                    , considerNext = False
+                    , timeline = Array.map (\x -> { stack = x, patternIndex = index }) actionResult.allStackStates
+                    }
+
+                else
+                    { stack = actionResult.stack
+                    , result = Failed
+                    , ctx = actionResult.ctx
+                    , considerNext = False
+                    , timeline = Array.map (\x -> { stack = x, patternIndex = index }) actionResult.allStackStates
+                    }
+
+            else if pattern.internalName == "pure_reduce" then
+                -- Fold: data[0]=init, apply code to (accumulator, element) for each data[1..]
+                let
+                    actionResult =
+                        pureReduceFunc stack ctx
+                in
+                if actionResult.success == True then
+                    { stack = actionResult.stack
+                    , result = Succeeded
+                    , ctx = actionResult.ctx
+                    , considerNext = False
+                    , timeline = Array.map (\x -> { stack = x, patternIndex = index }) actionResult.allStackStates
+                    }
+
+                else
+                    { stack = actionResult.stack
+                    , result = Failed
+                    , ctx = actionResult.ctx
+                    , considerNext = False
+                    , timeline = Array.map (\x -> { stack = x, patternIndex = index }) actionResult.allStackStates
+                    }
+
+            -- call_stack: like eval, evaluate pattern with carried args
+            else if pattern.internalName == "call_stack" then
+                let
+                    actionResult =
+                        eval stack ctx
                 in
                 if actionResult.success == True then
                     { stack = actionResult.stack
@@ -478,3 +612,199 @@ forEach stack ctx =
                 , success = False
                 , allStackStates = Array.fromList [ unshift (Garbage CatastrophicFailure) newStack ]
                 }
+
+
+-- pure_reduce: fold over data list using pattern code
+-- Stack: [pattern_list], [data_list]
+-- data[0] = initial accumulator, data[1..] = elements to fold over
+-- Applies pattern to (accumulator, element) for each element, result becomes new accumulator
+pureReduceFunc : Array Iota -> CastingContext -> { stack : Array Iota, ctx : CastingContext, success : Bool, allStackStates : Array (Array Iota) }
+pureReduceFunc stack ctx =
+    let
+        maybeCode = Array.get 1 stack
+        maybeData = Array.get 0 stack
+        newStack = Array.slice 2 (Array.length stack) stack
+    in
+    case (maybeCode, maybeData) of
+        (Just (IotaList codeList), Just (IotaList dataList)) ->
+            if Array.length dataList < 2 then
+                -- not enough data for reduce, push data back
+                { stack = unshift (IotaList dataList) newStack
+                , ctx = ctx
+                , success = True
+                , allStackStates = Array.fromList [ unshift (IotaList dataList) newStack ]
+                }
+
+            else
+                let
+                    initAcc = Array.get 0 dataList |> Maybe.withDefault Null
+                    rest = Array.slice 1 (Array.length dataList) dataList
+
+                    foldStep : Iota -> { acc : Iota, ctx_ : CastingContext, success_ : Bool } -> { acc : Iota, ctx_ : CastingContext, success_ : Bool }
+                    foldStep element state =
+                        if not state.success_ then
+                            state
+
+                        else
+                            let
+                                applyResult =
+                                    applyToStackStopAtErrorOrHalt
+                                        (unshift element (unshift state.acc Array.empty))
+                                        state.ctx_
+                                        codeList
+                            in
+                            case Array.get 0 applyResult.stack of
+                                Just result ->
+                                    { acc = result, ctx_ = applyResult.ctx, success_ = not applyResult.error }
+
+                                Nothing ->
+                                    { acc = Garbage NotEnoughIotas, ctx_ = applyResult.ctx, success_ = False }
+                in
+                let
+                    result = Array.foldl foldStep { acc = initAcc, ctx_ = ctx, success_ = True } rest
+                in
+                { stack = unshift result.acc newStack
+                , ctx = result.ctx_
+                , success = result.success_
+                , allStackStates = Array.fromList [ unshift result.acc newStack ]
+                }
+
+        _ ->
+            { stack = unshift (Garbage CatastrophicFailure) newStack
+            , ctx = ctx
+            , success = False
+            , allStackStates = Array.fromList [ unshift (Garbage CatastrophicFailure) newStack ]
+            }
+
+
+-- ============================================================
+-- HexFlow range generation (pure math)
+-- ============================================================
+
+-- Helper: count how many top-of-stack items are Numbers (for option detection)
+countTopNums : Array Iota -> Int
+countTopNums stack =
+    if Array.length stack == 0 then
+        0
+
+    else
+        case Array.get 0 stack of
+            Just (Number _) ->
+                let next = Array.slice 1 (Array.length stack) stack
+                in 1 + countTopNums next
+
+            _ ->
+                0
+
+
+-- for_range/cube: generate 3D cuboid vectors between pos1 and pos2
+-- Stack (top=0): ..., [code], pos1, pos2(, option=0)
+-- Consumes code + pos1 + pos2 + optional option, pushes IotaList of centers
+cubeRangeFunc : Array Iota -> CastingContext -> { stack : Array Iota, ctx : CastingContext, success : Bool, allStackStates : Array (Array Iota) }
+cubeRangeFunc stack ctx =
+    let
+        optNums = countTopNums stack  -- 0 or 1 option numbers
+        optOffset = min optNums 1
+        codeIdx = 2 + optOffset  -- code is 2+opt from top
+        pos1Idx = 1 + optOffset
+        pos2Idx = 0 + optOffset
+        consumed = 3 + optOffset  -- code + pos1 + pos2 + option
+
+        maybeCode = Array.get codeIdx stack
+        maybePos1 = Array.get pos1Idx stack
+        maybePos2 = Array.get pos2Idx stack
+        maybeOpt  = if optOffset > 0 then Array.get 0 stack else Nothing
+        newStack = Array.slice consumed (Array.length stack) stack
+    in
+    case (maybeCode, maybePos1, maybePos2) of
+        (Just _, Just (Vector (x1, y1, z1)), Just (Vector (x2, y2, z2))) ->
+            let
+                minX = round (min x1 x2)
+                maxX = round (max x1 x2)
+                minY = round (min y1 y2)
+                maxY = round (max y1 y2)
+                minZ = round (min z1 z2)
+                maxZ = round (max z1 z2)
+
+                centers : List Iota
+                centers =
+                    List.concatMap (\ix ->
+                        List.concatMap (\iy ->
+                            List.map (\iz ->
+                                Vector (toFloat ix + 0.5, toFloat iy + 0.5, toFloat iz + 0.5)
+                            ) (List.range minZ maxZ)
+                        ) (List.range minY maxY)
+                    ) (List.range minX maxX)
+
+                sorted =
+                    case maybeOpt of
+                        Just (Number opt) ->
+                            if round opt == 3 then List.reverse centers else centers
+                        _ -> centers
+            in
+            { stack = unshift (IotaList (Array.fromList sorted)) newStack
+            , ctx = ctx
+            , success = True
+            , allStackStates = Array.fromList [ unshift (IotaList (Array.fromList sorted)) newStack ]
+            }
+
+        _ ->
+            { stack = unshift (Garbage IncorrectIota) newStack
+            , ctx = ctx
+            , success = False
+            , allStackStates = Array.fromList [ unshift (Garbage IncorrectIota) newStack ]
+            }
+
+
+-- for_range/line: generate equally spaced points along line pos1→pos2
+-- Stack (top=0): ..., [code], pos1, pos2(, option=2, sep)
+-- Consumes code + pos1 + pos2 + optional option + optional sep, pushes IotaList
+lineRangeFunc : Array Iota -> CastingContext -> { stack : Array Iota, ctx : CastingContext, success : Bool, allStackStates : Array (Array Iota) }
+lineRangeFunc stack ctx =
+    let
+        optNums = countTopNums stack  -- 0, 1, or 2
+        optOffset = min optNums 2
+        codeIdx = 2 + optOffset
+        pos1Idx = 1 + optOffset
+        pos2Idx = 0 + optOffset
+        consumed = 3 + optOffset
+
+        maybePos1 = Array.get pos1Idx stack
+        maybePos2 = Array.get pos2Idx stack
+        -- sep: if optOffset==2, it's at index 0; if optOffset==1, option is at 0 and we use default; if 0, default
+        maybeSep  = if optOffset == 2 then Array.get 0 stack else Nothing
+        newStack = Array.slice consumed (Array.length stack) stack
+    in
+    case (maybePos1, maybePos2) of
+        (Just (Vector (x1, y1, z1)), Just (Vector (x2, y2, z2))) ->
+            let
+                dx = x2 - x1
+                dy = y2 - y1
+                dz = z2 - z1
+
+                sep =
+                    case maybeSep of
+                        Just (Number s) -> round s
+                        _ -> ceiling (max (max (abs dx) (abs dy)) (abs dz))
+
+                safeSep = max 1 (min 10000 sep)
+
+                points : List Iota
+                points =
+                    List.map (\i ->
+                        let t = toFloat i / toFloat safeSep
+                        in Vector (x1 + dx * t, y1 + dy * t, z1 + dz * t)
+                    ) (List.range 0 safeSep)
+            in
+            { stack = unshift (IotaList (Array.fromList points)) newStack
+            , ctx = ctx
+            , success = True
+            , allStackStates = Array.fromList [ unshift (IotaList (Array.fromList points)) newStack ]
+            }
+
+        _ ->
+            { stack = unshift (Garbage IncorrectIota) newStack
+            , ctx = ctx
+            , success = False
+            , allStackStates = Array.fromList [ unshift (Garbage IncorrectIota) newStack ]
+            }

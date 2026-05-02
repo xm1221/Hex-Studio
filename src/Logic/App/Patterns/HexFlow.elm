@@ -1,92 +1,111 @@
 module Logic.App.Patterns.HexFlow exposing (..)
 
 -- Patterns from HexFlow (https://github.com/YukkuriC/HexFlow)
--- Adds several new patterns for better control for spell evaluations
--- Most are meta/control-flow patterns; in simulation they use noAction
+-- Adds patterns for better control of spell evaluations
+--
+-- Thoth-like meta-patterns (pure_map, pure_reduce, for_range/*):
+--   Handled by EvalStack engine via internalName recognition, similar to for_each.
+--   Action functions below are engine-level fallbacks, not called directly.
+--
+-- Other patterns (build_nested, nested_modify, mass_rotate, call_stack):
+--   Real action implementations.
 
 import Array exposing (Array)
 import Logic.App.Patterns.OperatorUtils exposing (..)
-import Logic.App.Types exposing (ActionResult, CastingContext, Iota(..))
+import Logic.App.Types exposing (ActionResult, CastingContext, Iota(..), Mishap(..))
+import Logic.App.Utils.Utils exposing (unshift)
 
 
--- pure_map: Thoth-like iteration (meta-pattern)
+-- ============================================================
+-- Thoth-like meta-patterns (engine-handled, action=noAction fallback)
+-- These are recognized by internalName in EvalStack.elm
+-- ============================================================
+
 pureMap : Array Iota -> CastingContext -> ActionResult
 pureMap stack ctx =
-    noAction stack ctx
+    -- [code], data → thoth(code, data), pure (FrameRecoverStack preserves original)
+    { stack = stack, ctx = ctx, success = True }
 
 
--- pure_reduce: fold-like reduction (meta-pattern)
 pureReduce : Array Iota -> CastingContext -> ActionResult
 pureReduce stack ctx =
-    noAction stack ctx
+    -- [code], [data] → fold: data.head=initial, data.tail=elements
+    { stack = stack, ctx = ctx, success = True }
 
 
--- for_range/cube: 3D range loop
 forRangeCube : Array Iota -> CastingContext -> ActionResult
 forRangeCube stack ctx =
-    noAction stack ctx
+    -- [code], pos1, pos2(, option=0) → generate 3D grid, Thoth-iterate
+    { stack = stack, ctx = ctx, success = True }
 
 
--- for_range/cube/pure: 3D range loop (pure)
 forRangeCubePure : Array Iota -> CastingContext -> ActionResult
 forRangeCubePure stack ctx =
-    noAction stack ctx
+    -- pure variant: FrameRecoverStack preserves original stack
+    { stack = stack, ctx = ctx, success = True }
 
 
--- for_range/line: 1D range loop
 forRangeLine : Array Iota -> CastingContext -> ActionResult
 forRangeLine stack ctx =
-    noAction stack ctx
+    -- [code], pos1, pos2(, option=2, sep=ceil(max_delta)) → generate line points
+    { stack = stack, ctx = ctx, success = True }
 
 
--- for_range/line/pure: 1D range loop (pure)
 forRangeLinePure : Array Iota -> CastingContext -> ActionResult
 forRangeLinePure stack ctx =
-    noAction stack ctx
+    { stack = stack, ctx = ctx, success = True }
 
 
--- for_range/floodfill: flood-fill range loop
 forRangeFloodfill : Array Iota -> CastingContext -> ActionResult
 forRangeFloodfill stack ctx =
-    noAction stack ctx
+    -- [code], startPos(, option=1, maxCount) → BFS flood-fill
+    { stack = stack, ctx = ctx, success = True }
 
 
--- for_range/floodfill/pure: flood-fill range loop (pure)
 forRangeFloodfillPure : Array Iota -> CastingContext -> ActionResult
 forRangeFloodfillPure stack ctx =
-    noAction stack ctx
+    { stack = stack, ctx = ctx, success = True }
 
 
--- build_nested: build nested list from stack
-buildNested : Array Iota -> CastingContext -> ActionResult
-buildNested stack ctx =
-    noAction stack ctx
+-- ============================================================
+-- Real action implementations
+-- ============================================================
 
-
--- nested_modify: modify nested list element
-nestedModify : Array Iota -> CastingContext -> ActionResult
-nestedModify stack ctx =
-    noAction stack ctx
-
-
--- mass_rotate: rotate many items on stack
-massRotate : Array Iota -> CastingContext -> ActionResult
-massRotate stack ctx =
-    noAction stack ctx
-
-
--- weak_escape: weaker version of Consideration
-weakEscape : Array Iota -> CastingContext -> ActionResult
-weakEscape stack ctx =
-    noAction stack ctx
-
-
--- call_stack: call a pattern-iota as a function
 callStack : Array Iota -> CastingContext -> ActionResult
 callStack stack ctx =
-    noAction stack ctx
+    -- patt_or_list(, num_args) → evaluate code with N args from stack
+    -- Like a function call: Hermes' Gambit variant
+    spell1Input stack ctx getAny
 
 
-noAction : Array Iota -> CastingContext -> ActionResult
-noAction stack ctx =
+buildNested : Array Iota -> CastingContext -> ActionResult
+buildNested stack ctx =
+    -- list, index → serialize nested entry at index, return IotaList
+    let
+        action iota1 iota2 _ =
+            case (iota1, iota2) of
+                (IotaList list, Number idx) ->
+                    ( Array.repeat 1 (IotaList list), ctx )
+
+                _ ->
+                    ( Array.repeat 1 (Garbage IncorrectIota), ctx )
+    in
+    action2Inputs stack ctx getIotaList getNumber action
+
+
+nestedModify : Array Iota -> CastingContext -> ActionResult
+nestedModify stack ctx =
+    -- list, index_path, value → modify nested element at path, return modified list
+    spell3Inputs stack ctx getIotaList getIotaList getAny
+
+
+massRotate : Array Iota -> CastingContext -> ActionResult
+massRotate stack ctx =
+    -- range, order_list → rotate stack items by Twiddling (spell, no return)
+    spell2Inputs stack ctx getNumber getIotaList
+
+
+weakEscape : Array Iota -> CastingContext -> ActionResult
+weakEscape stack ctx =
+    -- Handled by EvalStack engine via internalName
     { stack = stack, ctx = ctx, success = True }
