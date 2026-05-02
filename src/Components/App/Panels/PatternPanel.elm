@@ -313,6 +313,97 @@ renderPatternList patternList dragoverIndex dragstartIndex overDragHandle insert
                                                         ]
                                                     ]
 
+                                                -- text-based iotas: Identifier, MString, Property, Display
+                                                Just ( IdentifierType, Identifier id ) ->
+                                                    [ div [ class "output_option_box", style "grid-template-columns" "2.1fr 3fr", opacity ]
+                                                        [ label [] [ text "ID:" ]
+                                                        , input [ placeholder "minecraft:stone", value id
+                                                                , onInput (\str -> UpdatePatternOuptut index { pattern | selectedOutput = Just ( IdentifierType, Identifier str ) })
+                                                                ] []
+                                                        ]
+                                                    ]
+
+                                                Just ( MStringType, MString s ) ->
+                                                    [ div [ class "output_option_box", style "grid-template-columns" "2.1fr 3fr", opacity ]
+                                                        [ label [] [ text "String:" ]
+                                                        , input [ placeholder "text", value s
+                                                                , onInput (\str -> UpdatePatternOuptut index { pattern | selectedOutput = Just ( MStringType, MString str ) })
+                                                                ] []
+                                                        ]
+                                                    ]
+
+                                                Just ( PropertyType, Property key ) ->
+                                                    [ div [ class "output_option_box", style "grid-template-columns" "2.1fr 3fr", opacity ]
+                                                        [ label [] [ text "Key:" ]
+                                                        , input [ placeholder "property_key", value key
+                                                                , onInput (\str -> UpdatePatternOuptut index { pattern | selectedOutput = Just ( PropertyType, Property str ) })
+                                                                ] []
+                                                        ]
+                                                    ]
+
+                                                Just ( DisplayType, Display text_ _ ) ->
+                                                    [ div [ class "output_option_box", style "grid-template-columns" "2.1fr 3fr", opacity ]
+                                                        [ label [] [ text "Text:" ]
+                                                        , input [ placeholder "text", value text_
+                                                                , onInput (\str -> UpdatePatternOuptut index { pattern | selectedOutput = Just ( DisplayType, Display str "" ) })
+                                                                ] []
+                                                        ]
+                                                    ]
+
+                                                Just ( MItemStackType, MItemStack id count ) ->
+                                                    [ div [ class "output_option_box", style "grid-template-columns" "2.1fr 3fr", opacity ]
+                                                        [ label [] [ text "Item ID:" ]
+                                                        , input [ placeholder "minecraft:stone", value id
+                                                                , onInput (\str -> UpdatePatternOuptut index { pattern | selectedOutput = Just ( MItemStackType, MItemStack str count ) })
+                                                                ] []
+                                                        ]
+                                                    ]
+
+                                                Just ( ItemStackType, ItemStack id count ) ->
+                                                    [ div [ class "output_option_box", style "grid-template-columns" "2.1fr 3fr", opacity ]
+                                                        [ label [] [ text "Item ID:" ]
+                                                        , input [ placeholder "minecraft:stone", value id
+                                                                , onInput (\str -> UpdatePatternOuptut index { pattern | selectedOutput = Just ( ItemStackType, ItemStack str count ) })
+                                                                ] []
+                                                        ]
+                                                    ]
+
+                                                Just ( MMatrixType, MMatrix s ) ->
+                                                    [ div [ class "output_option_box", style "grid-template-columns" "2.1fr 3fr", opacity ]
+                                                        [ label [] [ text "Matrix:" ]
+                                                        , input [ placeholder "...", value s
+                                                                , onInput (\str -> UpdatePatternOuptut index { pattern | selectedOutput = Just ( MMatrixType, MMatrix str ) })
+                                                                ] []
+                                                        ]
+                                                    ]
+
+                                                Just ( MIotaTypeType, MIotaType s ) ->
+                                                    [ div [ class "output_option_box", style "grid-template-columns" "2.1fr 3fr", opacity ]
+                                                        [ label [] [ text "IotaType:" ]
+                                                        , input [ placeholder "hexcasting:number", value s
+                                                                , onInput (\str -> UpdatePatternOuptut index { pattern | selectedOutput = Just ( MIotaTypeType, MIotaType str ) })
+                                                                ] []
+                                                        ]
+                                                    ]
+
+                                                Just ( MEntityTypeType, MEntityType s ) ->
+                                                    [ div [ class "output_option_box", style "grid-template-columns" "2.1fr 3fr", opacity ]
+                                                        [ label [] [ text "EntityType:" ]
+                                                        , input [ placeholder "minecraft:pig", value s
+                                                                , onInput (\str -> UpdatePatternOuptut index { pattern | selectedOutput = Just ( MEntityTypeType, MEntityType str ) })
+                                                                ] []
+                                                        ]
+                                                    ]
+
+                                                Just ( MItemTypeType, MItemType s ) ->
+                                                    [ div [ class "output_option_box", style "grid-template-columns" "2.1fr 3fr", opacity ]
+                                                        [ label [] [ text "ItemType:" ]
+                                                        , input [ placeholder "minecraft:stick", value s
+                                                                , onInput (\str -> UpdatePatternOuptut index { pattern | selectedOutput = Just ( MItemTypeType, MItemType str ) })
+                                                                ] []
+                                                        ]
+                                                    ]
+
                                                 _ ->
                                                     []
                                            )

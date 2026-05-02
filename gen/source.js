@@ -9143,15 +9143,59 @@ var $elm$regex$Regex$find = _Regex_findAtMost(_Regex_infinity);
 var $author$project$Logic$App$Types$Boolean = function (a) {
 	return {$: 'Boolean', a: a};
 };
+var $author$project$Logic$App$Types$BooleanType = {$: 'BooleanType'};
+var $author$project$Logic$App$Types$Display = F2(
+	function (a, b) {
+		return {$: 'Display', a: a, b: b};
+	});
+var $author$project$Logic$App$Types$DisplayType = {$: 'DisplayType'};
 var $author$project$Logic$App$Types$EntityType = {$: 'EntityType'};
+var $author$project$Logic$App$Types$Identifier = function (a) {
+	return {$: 'Identifier', a: a};
+};
+var $author$project$Logic$App$Types$IdentifierType = {$: 'IdentifierType'};
 var $author$project$Logic$App$Types$IotaListType = function (a) {
 	return {$: 'IotaListType', a: a};
 };
+var $author$project$Logic$App$Types$ItemStack = F2(
+	function (a, b) {
+		return {$: 'ItemStack', a: a, b: b};
+	});
+var $author$project$Logic$App$Types$ItemStackType = {$: 'ItemStackType'};
+var $author$project$Logic$App$Types$MEntityType = function (a) {
+	return {$: 'MEntityType', a: a};
+};
+var $author$project$Logic$App$Types$MEntityTypeType = {$: 'MEntityTypeType'};
+var $author$project$Logic$App$Types$MIotaType = function (a) {
+	return {$: 'MIotaType', a: a};
+};
+var $author$project$Logic$App$Types$MIotaTypeType = {$: 'MIotaTypeType'};
+var $author$project$Logic$App$Types$MItemStack = F2(
+	function (a, b) {
+		return {$: 'MItemStack', a: a, b: b};
+	});
+var $author$project$Logic$App$Types$MItemStackType = {$: 'MItemStackType'};
+var $author$project$Logic$App$Types$MItemType = function (a) {
+	return {$: 'MItemType', a: a};
+};
+var $author$project$Logic$App$Types$MItemTypeType = {$: 'MItemTypeType'};
+var $author$project$Logic$App$Types$MMatrix = function (a) {
+	return {$: 'MMatrix', a: a};
+};
+var $author$project$Logic$App$Types$MMatrixType = {$: 'MMatrixType'};
+var $author$project$Logic$App$Types$MString = function (a) {
+	return {$: 'MString', a: a};
+};
+var $author$project$Logic$App$Types$MStringType = {$: 'MStringType'};
 var $author$project$Logic$App$Types$MathematicalError = {$: 'MathematicalError'};
 var $author$project$Logic$App$Types$Number = function (a) {
 	return {$: 'Number', a: a};
 };
 var $author$project$Logic$App$Types$NumberType = {$: 'NumberType'};
+var $author$project$Logic$App$Types$Property = function (a) {
+	return {$: 'Property', a: a};
+};
+var $author$project$Logic$App$Types$PropertyType = {$: 'PropertyType'};
 var $author$project$Logic$App$Types$Vector = function (a) {
 	return {$: 'Vector', a: a};
 };
@@ -9348,6 +9392,29 @@ var $author$project$Logic$App$Patterns$Math$absLen = F2(
 			});
 		return A4($author$project$Logic$App$Patterns$OperatorUtils$action1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getNumberOrVector, action);
 	});
+var $author$project$Logic$App$Patterns$OperatorUtils$getEntity = function (iota) {
+	if (iota.$ === 'Entity') {
+		return $elm$core$Maybe$Just(iota);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Logic$App$Patterns$OperatorUtils$spell1Input = F3(
+	function (stack, ctx, inputGetter) {
+		return A4(
+			$author$project$Logic$App$Patterns$OperatorUtils$action1Input,
+			stack,
+			ctx,
+			inputGetter,
+			F2(
+				function (_v0, _v1) {
+					return _Utils_Tuple2($elm$core$Array$empty, ctx);
+				}));
+	});
+var $author$project$Logic$App$Patterns$Hexpose$absorptionHearts = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
 var $author$project$Logic$App$Patterns$OperatorUtils$action2Inputs = F5(
 	function (stack, ctx, inputGetter1, inputGetter2, action) {
 		var newStack = A3(
@@ -9515,13 +9582,6 @@ var $author$project$Logic$App$Patterns$Math$add = F2(
 			});
 		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getNumberOrVector, $author$project$Logic$App$Patterns$OperatorUtils$getNumberOrVector, action);
 	});
-var $author$project$Logic$App$Patterns$OperatorUtils$getEntity = function (iota) {
-	if (iota.$ === 'Entity') {
-		return $elm$core$Maybe$Just(iota);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
 var $author$project$Logic$App$Patterns$OperatorUtils$getVector = function (iota) {
 	if (iota.$ === 'Vector') {
 		return $elm$core$Maybe$Just(iota);
@@ -9752,6 +9812,10 @@ var $author$project$Logic$App$Patterns$ReadWrite$akashicWrite = F2(
 			});
 		return A6($author$project$Logic$App$Patterns$OperatorUtils$action3Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector, $author$project$Logic$App$Patterns$OperatorUtils$getPatternIota, $author$project$Logic$App$Patterns$OperatorUtils$getAny, action);
 	});
+var $author$project$Logic$App$Patterns$Hexpose$amEnlightened = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
 var $ianmackenzie$elm_units$Quantity$lessThanOrEqualTo = F2(
 	function (_v0, _v1) {
 		var y = _v0.a;
@@ -9786,7 +9850,7 @@ var $author$project$Logic$App$Patterns$OperatorUtils$checkEquality = F2(
 	function (iota1, iota2) {
 		var tolerance = 0.0001;
 		var _v0 = _Utils_Tuple2(iota1, iota2);
-		_v0$5:
+		_v0$15:
 		while (true) {
 			switch (_v0.a.$) {
 				case 'PatternIota':
@@ -9797,7 +9861,7 @@ var $author$project$Logic$App$Patterns$OperatorUtils$checkEquality = F2(
 						var pattern2 = _v2.a;
 						return _Utils_eq(pattern1.signature, pattern2.signature);
 					} else {
-						break _v0$5;
+						break _v0$15;
 					}
 				case 'IotaList':
 					if (_v0.b.$ === 'IotaList') {
@@ -9815,7 +9879,7 @@ var $author$project$Logic$App$Patterns$OperatorUtils$checkEquality = F2(
 								$elm$core$Array$toList(list1),
 								$elm$core$Array$toList(list2)));
 					} else {
-						break _v0$5;
+						break _v0$15;
 					}
 				case 'Vector':
 					if (_v0.b.$ === 'Vector') {
@@ -9829,7 +9893,7 @@ var $author$project$Logic$App$Patterns$OperatorUtils$checkEquality = F2(
 							vector1,
 							vector2);
 					} else {
-						break _v0$5;
+						break _v0$15;
 					}
 				case 'Number':
 					if (_v0.b.$ === 'Number') {
@@ -9839,7 +9903,7 @@ var $author$project$Logic$App$Patterns$OperatorUtils$checkEquality = F2(
 							$elm$core$Basics$abs(number1 - number2),
 							tolerance) < 0;
 					} else {
-						break _v0$5;
+						break _v0$15;
 					}
 				case 'Entity':
 					if (_v0.b.$ === 'Entity') {
@@ -9847,10 +9911,102 @@ var $author$project$Logic$App$Patterns$OperatorUtils$checkEquality = F2(
 						var entity2 = _v0.b.a;
 						return _Utils_eq(entity1, entity2);
 					} else {
-						break _v0$5;
+						break _v0$15;
+					}
+				case 'Identifier':
+					if (_v0.b.$ === 'Identifier') {
+						var id1 = _v0.a.a;
+						var id2 = _v0.b.a;
+						return _Utils_eq(id1, id2);
+					} else {
+						break _v0$15;
+					}
+				case 'Display':
+					if (_v0.b.$ === 'Display') {
+						var _v3 = _v0.a;
+						var t1 = _v3.a;
+						var s1 = _v3.b;
+						var _v4 = _v0.b;
+						var t2 = _v4.a;
+						var s2 = _v4.b;
+						return _Utils_eq(t1, t2) && _Utils_eq(s1, s2);
+					} else {
+						break _v0$15;
+					}
+				case 'ItemStack':
+					if (_v0.b.$ === 'ItemStack') {
+						var _v5 = _v0.a;
+						var id1 = _v5.a;
+						var c1 = _v5.b;
+						var _v6 = _v0.b;
+						var id2 = _v6.a;
+						var c2 = _v6.b;
+						return _Utils_eq(id1, id2) && _Utils_eq(c1, c2);
+					} else {
+						break _v0$15;
+					}
+				case 'Property':
+					if (_v0.b.$ === 'Property') {
+						var p1 = _v0.a.a;
+						var p2 = _v0.b.a;
+						return _Utils_eq(p1, p2);
+					} else {
+						break _v0$15;
+					}
+				case 'MString':
+					if (_v0.b.$ === 'MString') {
+						var s1 = _v0.a.a;
+						var s2 = _v0.b.a;
+						return _Utils_eq(s1, s2);
+					} else {
+						break _v0$15;
+					}
+				case 'MMatrix':
+					if (_v0.b.$ === 'MMatrix') {
+						var m1 = _v0.a.a;
+						var m2 = _v0.b.a;
+						return _Utils_eq(m1, m2);
+					} else {
+						break _v0$15;
+					}
+				case 'MIotaType':
+					if (_v0.b.$ === 'MIotaType') {
+						var t1 = _v0.a.a;
+						var t2 = _v0.b.a;
+						return _Utils_eq(t1, t2);
+					} else {
+						break _v0$15;
+					}
+				case 'MEntityType':
+					if (_v0.b.$ === 'MEntityType') {
+						var e1 = _v0.a.a;
+						var e2 = _v0.b.a;
+						return _Utils_eq(e1, e2);
+					} else {
+						break _v0$15;
+					}
+				case 'MItemType':
+					if (_v0.b.$ === 'MItemType') {
+						var i1 = _v0.a.a;
+						var i2 = _v0.b.a;
+						return _Utils_eq(i1, i2);
+					} else {
+						break _v0$15;
+					}
+				case 'MItemStack':
+					if (_v0.b.$ === 'MItemStack') {
+						var _v7 = _v0.a;
+						var id1 = _v7.a;
+						var c1 = _v7.b;
+						var _v8 = _v0.b;
+						var id2 = _v8.a;
+						var c2 = _v8.b;
+						return _Utils_eq(id1, id2) && _Utils_eq(c1, c2);
+					} else {
+						break _v0$15;
 					}
 				default:
-					break _v0$5;
+					break _v0$15;
 			}
 		}
 		return _Utils_eq(iota1, iota2);
@@ -9954,6 +10110,14 @@ var $author$project$Logic$App$Patterns$Math$andBool = F2(
 					ctx);
 			});
 		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getBoolean, $author$project$Logic$App$Patterns$OperatorUtils$getBoolean, action);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$angryAt = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$angryTime = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
 	});
 var $author$project$Logic$App$Patterns$Lists$append = F2(
 	function (stack, ctx) {
@@ -10104,25 +10268,63 @@ var $author$project$Logic$App$Patterns$Spells$beep = F2(
 	function (stack, ctx) {
 		return A5($author$project$Logic$App$Patterns$OperatorUtils$spell3Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector, $author$project$Logic$App$Patterns$OperatorUtils$getNumber, $author$project$Logic$App$Patterns$OperatorUtils$getNumber);
 	});
+var $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier = function (iota) {
+	if (iota.$ === 'Identifier') {
+		return $elm$core$Maybe$Just(iota);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Logic$App$Patterns$Hexpose$biomeToVillager = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
 var $author$project$Logic$App$Patterns$Spells$blink = F2(
 	function (stack, ctx) {
 		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity, $author$project$Logic$App$Patterns$OperatorUtils$getNumber);
 	});
-var $author$project$Logic$App$Patterns$OperatorUtils$spell1Input = F3(
-	function (stack, ctx, inputGetter) {
-		return A4(
-			$author$project$Logic$App$Patterns$OperatorUtils$action1Input,
-			stack,
-			ctx,
-			inputGetter,
-			F2(
-				function (_v0, _v1) {
-					return _Utils_Tuple2($elm$core$Array$empty, ctx);
-				}));
+var $author$project$Logic$App$Patterns$Hexpose$blockBlastResistance = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$blockHardness = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$blockMapColor = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$blockSlipperiness = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$blockTags = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$blockstateCrop = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$blockstateRotation = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
 	});
 var $author$project$Logic$App$Patterns$Spells$bonemeal = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$OperatorUtils$getItemStack = function (iota) {
+	if (iota.$ === 'ItemStack') {
+		return $elm$core$Maybe$Just(iota);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Logic$App$Patterns$Hexpose$bookSources = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack);
 	});
 var $author$project$Logic$App$Patterns$Math$boolCoerce = F2(
 	function (stack, ctx) {
@@ -10170,6 +10372,34 @@ var $author$project$Logic$App$Patterns$Math$boolCoerce = F2(
 var $author$project$Logic$App$Patterns$Spells$breakBlock = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$breedable = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$HexFlow$noAction = F2(
+	function (stack, ctx) {
+		return {ctx: ctx, stack: stack, success: true};
+	});
+var $author$project$Logic$App$Patterns$HexFlow$buildNested = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$HexFlow$noAction, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$burning = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$HexFlow$callStack = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$HexFlow$noAction, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$canItemSupportEnchantment = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$catVariant = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
 	});
 var $author$project$Logic$App$Patterns$Math$ceilAction = F2(
 	function (stack, ctx) {
@@ -10226,6 +10456,10 @@ var $author$project$Logic$App$Grid$centerMidpoints = function (points) {
 		},
 		points);
 };
+var $author$project$Logic$App$Patterns$Hexpose$classify = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny);
+	});
 var $elm$core$Basics$pi = _Basics_pi;
 var $author$project$Logic$App$Patterns$Math$coerceAxial = F2(
 	function (stack, ctx) {
@@ -10306,6 +10540,41 @@ var $author$project$Logic$App$Patterns$OperatorUtils$spellNoInput = F2(
 var $author$project$Logic$App$Patterns$Spells$colorize = F2(
 	function (stack, ctx) {
 		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$OperatorUtils$getDisplay = function (iota) {
+	if (iota.$ === 'Display') {
+		return $elm$core$Maybe$Just(iota);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Logic$App$Patterns$Hexpose$compareStyle = F2(
+	function (stack, ctx) {
+		var action = F3(
+			function (iota1, iota2, _v3) {
+				var _v0 = _Utils_Tuple2(iota1, iota2);
+				if ((_v0.a.$ === 'Display') && (_v0.b.$ === 'Display')) {
+					var _v1 = _v0.a;
+					var s1 = _v1.b;
+					var _v2 = _v0.b;
+					var s2 = _v2.b;
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							$author$project$Logic$App$Types$Boolean(
+								_Utils_eq(s1, s2))),
+						ctx);
+				} else {
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota)),
+						ctx);
+				}
+			});
+		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getDisplay, $author$project$Logic$App$Patterns$OperatorUtils$getDisplay, action);
 	});
 var $author$project$Logic$App$Patterns$Lists$concat = F2(
 	function (stack, ctx) {
@@ -10420,6 +10689,14 @@ var $author$project$Logic$App$Patterns$Math$cosine = F2(
 					ctx);
 			});
 		return A4($author$project$Logic$App$Patterns$OperatorUtils$action1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getNumber, action);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$countMaxStack = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$countStack = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack);
 	});
 var $elm$core$List$all = F2(
 	function (isOkay, list) {
@@ -10868,9 +11145,146 @@ var $author$project$Logic$App$Patterns$Spells$craftArtifact = F3(
 			});
 		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity, $author$project$Logic$App$Patterns$OperatorUtils$getPatternList, action);
 	});
+var $elm$core$String$fromFloat = _String_fromNumber;
+var $author$project$Logic$App$Patterns$Hexpose$getIotaDisplayString = function (iota) {
+	switch (iota.$) {
+		case 'Number':
+			var n = iota.a;
+			return $elm$core$String$fromFloat(n);
+		case 'Vector':
+			var _v1 = iota.a;
+			var x = _v1.a;
+			var y = _v1.b;
+			var z = _v1.c;
+			return '(' + ($elm$core$String$fromFloat(x) + (', ' + ($elm$core$String$fromFloat(y) + (', ' + ($elm$core$String$fromFloat(z) + ')')))));
+		case 'Boolean':
+			var b = iota.a;
+			return b ? 'true' : 'false';
+		case 'Entity':
+			var e = iota.a;
+			return e;
+		case 'Null':
+			return 'null';
+		case 'Identifier':
+			var id = iota.a;
+			return id;
+		case 'Display':
+			var t = iota.a;
+			return t;
+		case 'ItemStack':
+			var id = iota.a;
+			return id;
+		case 'Garbage':
+			return 'garbage';
+		case 'IotaList':
+			return '[list]';
+		case 'PatternIota':
+			var p = iota.a;
+			return p.displayName;
+		case 'OpenParenthesis':
+			return '[introspection]';
+		case 'Property':
+			var key = iota.a;
+			return key;
+		case 'MString':
+			var s = iota.a;
+			return s;
+		case 'MMatrix':
+			var s = iota.a;
+			return s;
+		case 'MIotaType':
+			var s = iota.a;
+			return s;
+		case 'MEntityType':
+			var s = iota.a;
+			return s;
+		case 'MItemType':
+			var s = iota.a;
+			return s;
+		default:
+			var id = iota.a;
+			return id;
+	}
+};
+var $author$project$Logic$App$Patterns$Hexpose$createDisplay = F2(
+	function (stack, ctx) {
+		var action = F2(
+			function (iota, _v1) {
+				if (iota.$ === 'Display') {
+					var t = iota.a;
+					var s = iota.b;
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							A2($author$project$Logic$App$Types$Display, t, '')),
+						ctx);
+				} else {
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							A2(
+								$author$project$Logic$App$Types$Display,
+								$author$project$Logic$App$Patterns$Hexpose$getIotaDisplayString(iota),
+								'')),
+						ctx);
+				}
+			});
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$action1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny, action);
+	});
+var $author$project$Logic$App$Patterns$Hexcellular$createProperty = F2(
+	function (stack, ctx) {
+		var action = function (_v0) {
+			return _Utils_Tuple2(
+				A2(
+					$elm$core$Array$repeat,
+					1,
+					$author$project$Logic$App$Types$Property('new_property')),
+				ctx);
+		};
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$actionNoInput, stack, ctx, action);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$createStack = F2(
+	function (stack, ctx) {
+		var action = F3(
+			function (iota1, iota2, _v1) {
+				var _v0 = _Utils_Tuple2(iota1, iota2);
+				if ((_v0.a.$ === 'Identifier') && (_v0.b.$ === 'Number')) {
+					var id = _v0.a.a;
+					var count = _v0.b.a;
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							A2($author$project$Logic$App$Types$ItemStack, id, count)),
+						ctx);
+				} else {
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota)),
+						ctx);
+				}
+			});
+		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier, $author$project$Logic$App$Patterns$OperatorUtils$getNumber, action);
+	});
 var $author$project$Logic$App$Patterns$Spells$createWater = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$creeperFuse = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$damageMaxStack = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$damageStack = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack);
 	});
 var $elm_community$array_extra$Array$Extra$sliceFrom = function (lengthDropped) {
 	return function (array) {
@@ -10975,6 +11389,173 @@ var $author$project$Logic$App$Patterns$Spells$destroyWater = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
 	});
+var $author$project$Logic$App$Patterns$Hexpose$disintegrateDisplay = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getDisplay);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$displayBoolean = F4(
+	function (propName, styleFn, stack, ctx) {
+		var action = F3(
+			function (iota1, iota2, _v2) {
+				if (iota1.$ === 'Display') {
+					var t = iota1.a;
+					var s = iota1.b;
+					switch (iota2.$) {
+						case 'Boolean':
+							var b = iota2.a;
+							var newStyle = b ? (propName + ('=true;' + s)) : (propName + ('=false;' + s));
+							return _Utils_Tuple2(
+								A2(
+									$elm$core$Array$repeat,
+									1,
+									A2($author$project$Logic$App$Types$Display, t, newStyle)),
+								ctx);
+						case 'Null':
+							return _Utils_Tuple2(
+								A2(
+									$elm$core$Array$repeat,
+									1,
+									A2($author$project$Logic$App$Types$Display, t, s)),
+								ctx);
+						default:
+							return _Utils_Tuple2(
+								A2(
+									$elm$core$Array$repeat,
+									1,
+									$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota)),
+								ctx);
+					}
+				} else {
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota)),
+						ctx);
+				}
+			});
+		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getDisplay, $author$project$Logic$App$Patterns$OperatorUtils$getAny, action);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$displayBold = A2($author$project$Logic$App$Patterns$Hexpose$displayBoolean, 'bold', $elm$core$Basics$identity);
+var $author$project$Logic$App$Patterns$Hexpose$displayChildren = F2(
+	function (stack, ctx) {
+		var action = F3(
+			function (iota1, iota2, _v1) {
+				if (iota1.$ === 'Display') {
+					var t = iota1.a;
+					var s = iota1.b;
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							A2($author$project$Logic$App$Types$Display, t, s)),
+						ctx);
+				} else {
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota)),
+						ctx);
+				}
+			});
+		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getDisplay, $author$project$Logic$App$Patterns$OperatorUtils$getIotaList, action);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$displayColor = F2(
+	function (stack, ctx) {
+		var action = F3(
+			function (iota1, iota2, _v3) {
+				if (iota1.$ === 'Display') {
+					var t = iota1.a;
+					var s = iota1.b;
+					switch (iota2.$) {
+						case 'Vector':
+							var _v2 = iota2.a;
+							var r = _v2.a;
+							var g = _v2.b;
+							var b = _v2.c;
+							var newStyle = 'color:rgb(' + ($elm$core$String$fromFloat(r * 255) + (',' + ($elm$core$String$fromFloat(g * 255) + (',' + ($elm$core$String$fromFloat(b * 255) + (');' + s))))));
+							return _Utils_Tuple2(
+								A2(
+									$elm$core$Array$repeat,
+									1,
+									A2($author$project$Logic$App$Types$Display, t, newStyle)),
+								ctx);
+						case 'Null':
+							return _Utils_Tuple2(
+								A2(
+									$elm$core$Array$repeat,
+									1,
+									A2($author$project$Logic$App$Types$Display, t, s)),
+								ctx);
+						default:
+							return _Utils_Tuple2(
+								A2(
+									$elm$core$Array$repeat,
+									1,
+									$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota)),
+								ctx);
+					}
+				} else {
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota)),
+						ctx);
+				}
+			});
+		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getDisplay, $author$project$Logic$App$Patterns$OperatorUtils$getAny, action);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$displayFont = F2(
+	function (stack, ctx) {
+		var action = F3(
+			function (iota1, iota2, _v2) {
+				if (iota1.$ === 'Display') {
+					var t = iota1.a;
+					var s = iota1.b;
+					switch (iota2.$) {
+						case 'Number':
+							var n = iota2.a;
+							return _Utils_Tuple2(
+								A2(
+									$elm$core$Array$repeat,
+									1,
+									A2(
+										$author$project$Logic$App$Types$Display,
+										t,
+										'font=' + ($elm$core$String$fromFloat(n) + (';' + s)))),
+								ctx);
+						case 'Null':
+							return _Utils_Tuple2(
+								A2(
+									$elm$core$Array$repeat,
+									1,
+									A2($author$project$Logic$App$Types$Display, t, s)),
+								ctx);
+						default:
+							return _Utils_Tuple2(
+								A2(
+									$elm$core$Array$repeat,
+									1,
+									$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota)),
+								ctx);
+					}
+				} else {
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota)),
+						ctx);
+				}
+			});
+		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getDisplay, $author$project$Logic$App$Patterns$OperatorUtils$getAny, action);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$displayItalics = A2($author$project$Logic$App$Patterns$Hexpose$displayBoolean, 'italic', $elm$core$Basics$identity);
+var $author$project$Logic$App$Patterns$Hexpose$displayObfuscated = A2($author$project$Logic$App$Patterns$Hexpose$displayBoolean, 'obfuscated', $elm$core$Basics$identity);
+var $author$project$Logic$App$Patterns$Hexpose$displayStrikethrough = A2($author$project$Logic$App$Patterns$Hexpose$displayBoolean, 'strikethrough', $elm$core$Basics$identity);
+var $author$project$Logic$App$Patterns$Hexpose$displayUnderline = A2($author$project$Logic$App$Patterns$Hexpose$displayBoolean, 'underline', $elm$core$Basics$identity);
 var $ianmackenzie$elm_geometry$Vector3d$cross = F2(
 	function (_v0, _v1) {
 		var v2 = _v0.a;
@@ -11164,13 +11745,73 @@ var $author$project$Logic$App$Patterns$Stack$duplicateN = F2(
 		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny, $author$project$Logic$App$Patterns$OperatorUtils$getInteger, action);
 	});
 var $elm$core$Basics$e = _Basics_e;
+var $author$project$Logic$App$Patterns$Hexpose$edible = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
 var $author$project$Logic$App$Patterns$Spells$edify = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
 	});
+var $author$project$Logic$App$Patterns$Hexpose$enchantmentMaxLevel = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$enchantmentMinLevel = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$enchantmentWeight = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$entityName = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$entityPassengers = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
 var $author$project$Logic$App$Patterns$Misc$entityPos = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$entityTags = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$entityVehicle = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$entityWidth = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$envAmbit = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$envCircle = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$envMedia = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$envOffhand = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$envPackagedHex = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$envStaff = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
 	});
 var $author$project$Logic$App$Patterns$Math$equalTo = F2(
 	function (stack, ctx) {
@@ -11422,6 +12063,30 @@ var $author$project$Logic$App$Patterns$Math$floorAction = F2(
 			});
 		return A4($author$project$Logic$App$Patterns$OperatorUtils$action1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getNumber, action);
 	});
+var $author$project$Logic$App$Patterns$HexFlow$forRangeCube = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$HexFlow$noAction, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$HexFlow$forRangeCubePure = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$HexFlow$noAction, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$HexFlow$forRangeFloodfill = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$HexFlow$noAction, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$HexFlow$forRangeFloodfillPure = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$HexFlow$noAction, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$HexFlow$forRangeLine = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$HexFlow$noAction, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$HexFlow$forRangeLinePure = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$HexFlow$noAction, stack, ctx);
+	});
 var $elm$core$Set$Set_elm_builtin = function (a) {
 	return {$: 'Set_elm_builtin', a: a};
 };
@@ -11435,6 +12100,26 @@ var $elm$core$Set$insert = F2(
 var $elm$core$Set$fromList = function (list) {
 	return A3($elm$core$List$foldl, $elm$core$Set$insert, $elm$core$Set$empty, list);
 };
+var $author$project$Logic$App$Patterns$Hexpose$getAir = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getArmor = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getBiome = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getBlockInventory = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getBlockstates = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
 var $author$project$Logic$App$Types$Entity = function (a) {
 	return {$: 'Entity', a: a};
 };
@@ -11450,6 +12135,58 @@ var $author$project$Logic$App$Patterns$Selectors$getCaster = F2(
 		};
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$actionNoInput, stack, ctx, action);
 	});
+var $author$project$Logic$App$Patterns$Hexpose$getChunkLoaded = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getComparator = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getDay = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getDimension = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getEffectAmplifier = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getEffectCategory = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getEffectDuration = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getEffectsEntity = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getEffectsItem = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getEinstein = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getEnchantmentStrength = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getEnchantments = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getEnderChest = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
 var $author$project$Logic$App$Patterns$Selectors$getEntity = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
@@ -11462,9 +12199,101 @@ var $author$project$Logic$App$Patterns$Misc$getEntityLook = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
 	});
+var $author$project$Logic$App$Patterns$MoreIotas$getEntityType = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
 var $author$project$Logic$App$Patterns$Misc$getEntityVelocity = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getHealth = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getHunger = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getInventory = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getItemFrameRotation = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getLight = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getMainhand = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getMaxAir = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getMaxHealth = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getMaxMedia = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getMedia = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getMessage = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getMessageIndexed = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getNumber);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getMoon = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getOffhand = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getPlayerHunger = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getPlayerSaturation = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getPower = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getSaturation = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getSlime = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getStack = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getTime = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$getWeather = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
 	});
 var $author$project$Logic$App$Patterns$Misc$gravityGet = F2(
 	function (stack, ctx) {
@@ -11587,6 +12416,10 @@ var $author$project$Logic$App$Grid$gridpointToMidpoints = function (gridPoint) {
 		},
 		gridPoint.connectedPoints);
 };
+var $author$project$Logic$App$Patterns$Hexpose$identify = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny);
+	});
 var $author$project$Logic$App$Patterns$Math$ifBool = F2(
 	function (stack, ctx) {
 		var action = F4(
@@ -11703,6 +12536,102 @@ var $author$project$Logic$App$Patterns$Math$invertBool = F2(
 					ctx);
 			});
 		return A4($author$project$Logic$App$Patterns$OperatorUtils$action1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getBoolean, action);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$isBaby = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$isBlockAir = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$isBlockReplaceable = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$isBrainswept = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$isEnchantmentCursed = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$isEnchantmentTreasure = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$isMeat = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$isMonster = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$isSleeping = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$isSnack = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$isSprinting = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$isWet = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$itemGetInventoryItems = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$itemGetInventoryStacks = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$itemGetMainHand = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$itemGetOffHand = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$itemLore = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$itemName = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$itemRarity = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$itemTags = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$itemVariant = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$itemVariantMax = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$lastAttacked = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$lastAttacker = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
 	});
 var $author$project$Logic$App$Patterns$Lists$lastNList = F2(
 	function (stack, ctx) {
@@ -11921,6 +12850,45 @@ var $author$project$Logic$App$Patterns$OperatorUtils$makeConstant = F3(
 			success: true
 		};
 	});
+var $author$project$Logic$App$Patterns$HexFlow$massRotate = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$HexFlow$noAction, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$OperatorUtils$getMMatrix = function (iota) {
+	if (iota.$ === 'MMatrix') {
+		return $elm$core$Maybe$Just(iota);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Logic$App$Patterns$MoreIotas$matrixDeterminant = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getMMatrix);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$matrixIdentity = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getNumber);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$matrixInverse = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getMMatrix);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$matrixMake = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIotaList);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$matrixRotation = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getNumber, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$matrixUnmake = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getMMatrix);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$matrixZero = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getNumber);
+	});
 var $author$project$Logic$App$Types$Backspace = {$: 'Backspace'};
 var $author$project$Logic$App$Types$ClearPatterns = {$: 'ClearPatterns'};
 var $author$project$Logic$App$Types$Reset = {$: 'Reset'};
@@ -12097,6 +13065,10 @@ var $author$project$Logic$App$Patterns$Math$mulDot = F2(
 			});
 		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getNumberOrVector, $author$project$Logic$App$Patterns$OperatorUtils$getNumberOrVector, action);
 	});
+var $author$project$Logic$App$Patterns$HexFlow$nestedModify = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$HexFlow$noAction, stack, ctx);
+	});
 var $elm$core$Bitwise$complement = _Bitwise_complement;
 var $author$project$Logic$App$Patterns$Math$notBit = F2(
 	function (stack, ctx) {
@@ -12136,7 +13108,6 @@ var $author$project$Logic$App$Patterns$Math$notEqualTo = F2(
 			});
 		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny, $author$project$Logic$App$Patterns$OperatorUtils$getAny, action);
 	});
-var $elm$core$String$fromFloat = _String_fromNumber;
 var $author$project$Logic$App$Patterns$Misc$numberLiteral = F3(
 	function (number, stack, ctx) {
 		return {
@@ -12189,6 +13160,17 @@ var $author$project$Logic$App$Patterns$PatternRegistry$numberLiteralGenerator = 
 			signature: angleSignature,
 			startDirection: $author$project$Logic$App$Types$Southeast
 		};
+	});
+var $author$project$Logic$App$Patterns$OperatorUtils$getProperty = function (iota) {
+	if (iota.$ === 'Property') {
+		return $elm$core$Maybe$Just(iota);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Logic$App$Patterns$Hexcellular$observeProperty = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getProperty);
 	});
 var $elm$core$Bitwise$or = _Bitwise_or;
 var $author$project$Logic$App$Patterns$Math$orBit = F2(
@@ -12285,6 +13267,10 @@ var $author$project$Logic$App$Patterns$Stack$over = F2(
 					ctx);
 			});
 		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny, $author$project$Logic$App$Patterns$OperatorUtils$getAny, action);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$paintingVariant = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
 	});
 var $elm$core$String$concat = function (strings) {
 	return A2($elm$core$String$join, '', strings);
@@ -12485,6 +13471,10 @@ var $author$project$Logic$App$Patterns$PatternRegistry$parseBookkeeperSignature 
 		}
 	}
 };
+var $author$project$Logic$App$Patterns$Hexpose$parseDisplay = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getDisplay);
+	});
 var $author$project$Logic$App$Patterns$Misc$pekhuiGet = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
@@ -12492,6 +13482,10 @@ var $author$project$Logic$App$Patterns$Misc$pekhuiGet = F2(
 var $author$project$Logic$App$Patterns$Misc$pekhuiSet = F2(
 	function (stack, ctx) {
 		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity, $author$project$Logic$App$Patterns$OperatorUtils$getNumber);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$petOwner = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
 	});
 var $author$project$Logic$App$Patterns$Spells$placeBlock = F2(
 	function (stack, ctx) {
@@ -12603,6 +13597,18 @@ var $author$project$Logic$App$Patterns$Misc$print = F2(
 						ctx);
 				}));
 	});
+var $author$project$Logic$App$Patterns$HexFlow$pureMap = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$HexFlow$noAction, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$HexFlow$pureReduce = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$HexFlow$noAction, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$queryBlockstate = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector, $author$project$Logic$App$Patterns$OperatorUtils$getIdentifier);
+	});
 var $author$project$Logic$App$Patterns$Misc$raycast = F2(
 	function (stack, ctx) {
 		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
@@ -12668,6 +13674,10 @@ var $author$project$Logic$App$Patterns$ReadWrite$read = F2(
 				context);
 		};
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$actionNoInput, stack, ctx, action);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$readBook = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack);
 	});
 var $author$project$Logic$App$Utils$EntityContext$getEntityHeldItem = F2(
 	function (context, entityName) {
@@ -12820,6 +13830,29 @@ var $author$project$Logic$App$Patterns$ReadWrite$readable = F2(
 		};
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$actionNoInput, stack, ctx, action);
 	});
+var $author$project$Logic$App$Patterns$Hexcellular$readonlyProperty = F2(
+	function (stack, ctx) {
+		var action = F2(
+			function (iota, _v1) {
+				if (iota.$ === 'Property') {
+					var key = iota.a;
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							$author$project$Logic$App$Types$Property(key + '_readonly')),
+						ctx);
+				} else {
+					return _Utils_Tuple2(
+						A2(
+							$elm$core$Array$repeat,
+							1,
+							$author$project$Logic$App$Types$Garbage($author$project$Logic$App$Types$IncorrectIota)),
+						ctx);
+				}
+			});
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$action1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getProperty, action);
+	});
 var $author$project$Logic$App$Patterns$Spells$recharge = F2(
 	function (stack, ctx) {
 		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
@@ -12912,6 +13945,26 @@ var $author$project$Logic$App$Patterns$Spells$sentinelWayfind = F2(
 						ctx);
 				}));
 	});
+var $author$project$Logic$App$Patterns$Hexpose$setItemFrameRotation = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity, $author$project$Logic$App$Patterns$OperatorUtils$getNumber);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$setItemLore = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack, $author$project$Logic$App$Patterns$OperatorUtils$getIotaList);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$setItemName = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getItemStack, $author$project$Logic$App$Patterns$OperatorUtils$getDisplay);
+	});
+var $author$project$Logic$App$Patterns$Hexcellular$setProperty = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getProperty, $author$project$Logic$App$Patterns$OperatorUtils$getAny);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$shooter = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
 var $author$project$Logic$App$Patterns$Math$sine = F2(
 	function (stack, ctx) {
 		var action = F2(
@@ -13001,6 +14054,10 @@ var $author$project$Logic$App$Patterns$Lists$splat = F2(
 			});
 		return A4($author$project$Logic$App$Patterns$OperatorUtils$action1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getIotaList, action);
 	});
+var $author$project$Logic$App$Patterns$Hexpose$splitDisplay = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getDisplay, $author$project$Logic$App$Patterns$OperatorUtils$getDisplay);
+	});
 var $author$project$Logic$App$Patterns$Stack$stackLength = F2(
 	function (stack, ctx) {
 		return A3(
@@ -13016,6 +14073,73 @@ var $author$project$Logic$App$Patterns$Stack$stackLength = F2(
 							$elm$core$Array$length(stack))),
 					ctx);
 			});
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringAction = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringBlockGet = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector);
+	});
+var $author$project$Logic$App$Patterns$OperatorUtils$getMString = function (iota) {
+	if (iota.$ === 'MString') {
+		return $elm$core$Maybe$Just(iota);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Logic$App$Patterns$MoreIotas$stringBlockSet = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector, $author$project$Logic$App$Patterns$OperatorUtils$getMString);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringCase = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getMString);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringChatAll = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringChatCaster = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringChatPrefixGet = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringChatPrefixSet = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getMString);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringComma = $author$project$Logic$App$Patterns$OperatorUtils$makeConstant(
+	$author$project$Logic$App$Types$MString(','));
+var $author$project$Logic$App$Patterns$MoreIotas$stringEmpty = $author$project$Logic$App$Patterns$OperatorUtils$makeConstant(
+	$author$project$Logic$App$Types$MString(''));
+var $author$project$Logic$App$Patterns$MoreIotas$stringIota = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringNameGet = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringNameSet = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity, $author$project$Logic$App$Patterns$OperatorUtils$getMString);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringNewline = $author$project$Logic$App$Patterns$OperatorUtils$makeConstant(
+	$author$project$Logic$App$Types$MString('\n'));
+var $author$project$Logic$App$Patterns$MoreIotas$stringParse = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getMString);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$stringSpace = $author$project$Logic$App$Patterns$OperatorUtils$makeConstant(
+	$author$project$Logic$App$Types$MString(' '));
+var $author$project$Logic$App$Patterns$MoreIotas$stringSplit = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getMString, $author$project$Logic$App$Patterns$OperatorUtils$getMString);
 	});
 var $author$project$Logic$App$Patterns$Math$subtract = F2(
 	function (stack, ctx) {
@@ -13291,6 +14415,10 @@ var $author$project$Logic$App$Patterns$Math$tangent = F2(
 			});
 		return A4($author$project$Logic$App$Patterns$OperatorUtils$action1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getNumber, action);
 	});
+var $author$project$Logic$App$Patterns$Hexpose$theodolite = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
 var $author$project$Logic$App$Patterns$Math$toSet = F2(
 	function (stack, ctx) {
 		var constructSet = F2(
@@ -13333,6 +14461,30 @@ var $author$project$Logic$App$Patterns$Stack$tuck = F2(
 					ctx);
 			});
 		return A5($author$project$Logic$App$Patterns$OperatorUtils$action2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny, $author$project$Logic$App$Patterns$OperatorUtils$getAny, action);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$typeEntity = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$typeIota = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getAny);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$typeItemHeld = F2(
+	function (stack, ctx) {
+		return A2($author$project$Logic$App$Patterns$OperatorUtils$spellNoInput, stack, ctx);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$villagerLevel = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$villagerProfession = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
+	});
+var $author$project$Logic$App$Patterns$Hexpose$villagerType = F2(
+	function (stack, ctx) {
+		return A3($author$project$Logic$App$Patterns$OperatorUtils$spell1Input, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getEntity);
 	});
 var $author$project$Logic$App$Patterns$ReadWrite$writable = F2(
 	function (stack, ctx) {
@@ -13644,6 +14796,21 @@ var $author$project$Logic$App$Patterns$Math$xorBool = F2(
 var $author$project$Logic$App$Patterns$Selectors$zoneEntity = F2(
 	function (stack, ctx) {
 		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector, $author$project$Logic$App$Patterns$OperatorUtils$getNumber);
+	});
+var $author$project$Logic$App$Patterns$OperatorUtils$getMEntityType = function (iota) {
+	if (iota.$ === 'MEntityType') {
+		return $elm$core$Maybe$Just(iota);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Logic$App$Patterns$MoreIotas$zoneEntityNotType = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector, $author$project$Logic$App$Patterns$OperatorUtils$getMEntityType);
+	});
+var $author$project$Logic$App$Patterns$MoreIotas$zoneEntityType = F2(
+	function (stack, ctx) {
+		return A4($author$project$Logic$App$Patterns$OperatorUtils$spell2Inputs, stack, ctx, $author$project$Logic$App$Patterns$OperatorUtils$getVector, $author$project$Logic$App$Patterns$OperatorUtils$getMEntityType);
 	});
 var $author$project$Logic$App$Patterns$PatternRegistry$getPatternFromSignature = F2(
 	function (maybeMacros, signature) {
@@ -14616,6 +15783,2224 @@ function $author$project$Logic$App$Patterns$PatternRegistry$cyclic$patternRegist
 						{action: $author$project$Logic$App$Patterns$PatternRegistry$noAction, displayName: 'Hermes\' Gambit', internalName: 'eval', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'deaqq', startDirection: $author$project$Logic$App$Types$Southeast},
 						{action: $author$project$Logic$App$Patterns$PatternRegistry$noAction, displayName: 'Thoth\'s Gambit', internalName: 'for_each', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'dadad', startDirection: $author$project$Logic$App$Types$Northeast},
 						{action: $author$project$Logic$App$Patterns$PatternRegistry$saveMacro, displayName: 'Save Macro', internalName: 'save_macro', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'awaawa', startDirection: $author$project$Logic$App$Types$Southeast},
+						{
+						action: $author$project$Logic$App$Patterns$Hexcellular$createProperty,
+						displayName: 'Schrodinger\'s Reflection',
+						internalName: 'create_property',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$PropertyType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$PropertyType,
+								$author$project$Logic$App$Types$Property('new_property'))),
+						signature: 'aawe',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexcellular$observeProperty,
+						displayName: 'Observation Purification',
+						internalName: 'observe_property',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$VectorType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2($author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$Null)),
+						signature: 'aawd',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{action: $author$project$Logic$App$Patterns$Hexcellular$setProperty, displayName: 'Schrodinger\'s Gambit', internalName: 'set_property', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'aawq', startDirection: $author$project$Logic$App$Types$Southwest},
+						{
+						action: $author$project$Logic$App$Patterns$Hexcellular$readonlyProperty,
+						displayName: 'Schrodinger\'s Purification',
+						internalName: 'readonly_property',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$PropertyType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$PropertyType,
+								$author$project$Logic$App$Types$Property('new_property_readonly'))),
+						signature: 'aawa',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{action: $author$project$Logic$App$Patterns$HexFlow$pureMap, displayName: 'Pure Map', internalName: 'pure_map', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'dadadad', startDirection: $author$project$Logic$App$Types$Northeast},
+						{action: $author$project$Logic$App$Patterns$HexFlow$pureReduce, displayName: 'Pure Reduce', internalName: 'pure_reduce', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'waawadadad', startDirection: $author$project$Logic$App$Types$Northeast},
+						{
+						action: $author$project$Logic$App$Patterns$HexFlow$forRangeCube,
+						displayName: 'For Range: Cube',
+						internalName: 'for_range/cube',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$VectorType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$VectorType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'dadadqqaqqqqq',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$HexFlow$forRangeCubePure,
+						displayName: 'For Range: Cube (Pure)',
+						internalName: 'for_range/cube/pure',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$VectorType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$VectorType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'dadadadqqaqqqqq',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$HexFlow$forRangeLine,
+						displayName: 'For Range: Line',
+						internalName: 'for_range/line',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$VectorType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$VectorType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'dadadawwa',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$HexFlow$forRangeLinePure,
+						displayName: 'For Range: Line (Pure)',
+						internalName: 'for_range/line/pure',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$VectorType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$VectorType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'dadadadawwa',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$HexFlow$forRangeFloodfill,
+						displayName: 'For Range: Floodfill',
+						internalName: 'for_range/floodfill',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$VectorType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$VectorType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'dadadqadadwdadadwdadaddwwawwaadaddwaaddad',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$HexFlow$forRangeFloodfillPure,
+						displayName: 'For Range: Floodfill (Pure)',
+						internalName: 'for_range/floodfill/pure',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$VectorType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$VectorType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'dadadadqadadwdadadwdadaddwwawwaadaddwaaddad',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$HexFlow$buildNested,
+						displayName: 'Build Nested',
+						internalName: 'build_nested',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$NullType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$NullType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'edqdeqdwewwdwqwdwwew',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$HexFlow$nestedModify,
+						displayName: 'Nested Modify',
+						internalName: 'nested_modify',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$NullType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$NullType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'wdwawedqdewawdw',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$HexFlow$massRotate,
+						displayName: 'Mass Rotate',
+						internalName: 'mass_rotate',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$NullType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$NullType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'edqdewawddw',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{action: $author$project$Logic$App$Patterns$PatternRegistry$noAction, displayName: 'Weak Escape', internalName: 'weak_escape', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'qqqaww', startDirection: $author$project$Logic$App$Types$West},
+						{
+						action: $author$project$Logic$App$Patterns$HexFlow$callStack,
+						displayName: 'Call Stack',
+						internalName: 'call_stack',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$VectorType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2($author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$Null)),
+						signature: 'dwdeaqqa',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringEmpty,
+						displayName: 'String Empty',
+						internalName: 'string/empty',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MStringType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MStringType,
+								$author$project$Logic$App$Types$MString(''))),
+						signature: 'awdwa',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringSpace,
+						displayName: 'String Space',
+						internalName: 'string/space',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MStringType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MStringType,
+								$author$project$Logic$App$Types$MString(' '))),
+						signature: 'awdwaaww',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringComma,
+						displayName: 'String Comma',
+						internalName: 'string/comma',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MStringType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MStringType,
+								$author$project$Logic$App$Types$MString(','))),
+						signature: 'qa',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringNewline,
+						displayName: 'String Newline',
+						internalName: 'string/newline',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MStringType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MStringType,
+								$author$project$Logic$App$Types$MString('\n'))),
+						signature: 'waawaw',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringBlockGet,
+						displayName: 'Get Block String',
+						internalName: 'string/block/get',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MStringType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MStringType,
+								$author$project$Logic$App$Types$MString(''))),
+						signature: 'awqwawqe',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{action: $author$project$Logic$App$Patterns$MoreIotas$stringBlockSet, displayName: 'Set Block String', internalName: 'string/block/set', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'dwewdweq', startDirection: $author$project$Logic$App$Types$West},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringChatCaster,
+						displayName: 'Chat String (Caster)',
+						internalName: 'string/chat/caster',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MStringType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MStringType,
+								$author$project$Logic$App$Types$MString(''))),
+						signature: 'waqa',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringChatAll,
+						displayName: 'Chat String (All)',
+						internalName: 'string/chat/all',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MStringType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MStringType,
+								$author$project$Logic$App$Types$MString(''))),
+						signature: 'wded',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringChatPrefixGet,
+						displayName: 'Get Chat Prefix',
+						internalName: 'string/chat/prefix/get',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MStringType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MStringType,
+								$author$project$Logic$App$Types$MString(''))),
+						signature: 'ewded',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{action: $author$project$Logic$App$Patterns$MoreIotas$stringChatPrefixSet, displayName: 'Set Chat Prefix', internalName: 'string/chat/prefix/set', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'qwaqa', startDirection: $author$project$Logic$App$Types$Southeast},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringIota,
+						displayName: 'Iota To String',
+						internalName: 'string/iota',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MStringType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MStringType,
+								$author$project$Logic$App$Types$MString(''))),
+						signature: 'wawqwawaw',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringAction,
+						displayName: 'Action To String',
+						internalName: 'string/action',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MStringType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MStringType,
+								$author$project$Logic$App$Types$MString(''))),
+						signature: 'wdwewdwdw',
+						startDirection: $author$project$Logic$App$Types$Northwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringNameGet,
+						displayName: 'Get Name',
+						internalName: 'string/name/get',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MStringType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MStringType,
+								$author$project$Logic$App$Types$MString(''))),
+						signature: 'deqqeddqwqqqwq',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{action: $author$project$Logic$App$Patterns$MoreIotas$stringNameSet, displayName: 'Set Name', internalName: 'string/name/set', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'aqeeqaaeweeewe', startDirection: $author$project$Logic$App$Types$Southwest},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringSplit,
+						displayName: 'Split String',
+						internalName: 'string/split',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$MStringType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$MStringType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'aqwaqa',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringParse,
+						displayName: 'Parse String',
+						internalName: 'string/parse',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'aqwaq',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$stringCase,
+						displayName: 'Case String',
+						internalName: 'string/case',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MStringType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MStringType,
+								$author$project$Logic$App$Types$MString(''))),
+						signature: 'dwwdwwdwdd',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$matrixMake,
+						displayName: 'Make Matrix',
+						internalName: 'matrix/make',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MMatrixType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MMatrixType,
+								$author$project$Logic$App$Types$MMatrix(''))),
+						signature: 'awwaeawwaadwa',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$matrixUnmake,
+						displayName: 'Unmake Matrix',
+						internalName: 'matrix/unmake',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$NumberType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$NumberType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'dwwdqdwwddawd',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$matrixIdentity,
+						displayName: 'Identity Matrix',
+						internalName: 'matrix/identity',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MMatrixType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MMatrixType,
+								$author$project$Logic$App$Types$MMatrix(''))),
+						signature: 'awwaeawwaqw',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$matrixZero,
+						displayName: 'Zero Matrix',
+						internalName: 'matrix/zero',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MMatrixType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MMatrixType,
+								$author$project$Logic$App$Types$MMatrix(''))),
+						signature: 'awwaeawwa',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$matrixRotation,
+						displayName: 'Rotation Matrix',
+						internalName: 'matrix/rotation',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MMatrixType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MMatrixType,
+								$author$project$Logic$App$Types$MMatrix(''))),
+						signature: 'awwaeawwawawddw',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$matrixInverse,
+						displayName: 'Inverse Matrix',
+						internalName: 'matrix/inverse',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MMatrixType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MMatrixType,
+								$author$project$Logic$App$Types$MMatrix(''))),
+						signature: 'wwdqdwwdqaq',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$matrixDeterminant,
+						displayName: 'Matrix Determinant',
+						internalName: 'matrix/determinant',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'aeawwaeawaw',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$typeEntity,
+						displayName: 'Type Entity',
+						internalName: 'type/entity',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MEntityTypeType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MEntityTypeType,
+								$author$project$Logic$App$Types$MEntityType('minecraft:pig'))),
+						signature: 'qawde',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$typeIota,
+						displayName: 'Type Iota',
+						internalName: 'type/iota',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MIotaTypeType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MIotaTypeType,
+								$author$project$Logic$App$Types$MIotaType('hexcasting:number'))),
+						signature: 'awd',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$typeItemHeld,
+						displayName: 'Type Item Held',
+						internalName: 'type/item_held',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MItemTypeType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MItemTypeType,
+								$author$project$Logic$App$Types$MItemType('minecraft:stick'))),
+						signature: 'edeedqd',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$getEntityType,
+						displayName: 'Get Entity Type',
+						internalName: 'get_entity/type',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MEntityTypeType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MEntityTypeType,
+								$author$project$Logic$App$Types$MEntityType('minecraft:pig'))),
+						signature: 'dadqqqqqdad',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$zoneEntityType,
+						displayName: 'Zone Entity Type',
+						internalName: 'zone_entity/type',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$EntityType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$EntityType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'waweeeeewaw',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$zoneEntityNotType,
+						displayName: 'Zone Entity Not Type',
+						internalName: 'zone_entity/not_type',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$EntityType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$EntityType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'wdwqqqqqwdw',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$itemGetMainHand,
+						displayName: 'Item Main Hand',
+						internalName: 'item/main_hand',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MItemStackType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MItemStackType,
+								A2($author$project$Logic$App$Types$MItemStack, 'minecraft:stick', 1))),
+						signature: 'adeq',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$itemGetOffHand,
+						displayName: 'Item Off Hand',
+						internalName: 'item/off_hand',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$MItemStackType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$MItemStackType,
+								A2($author$project$Logic$App$Types$MItemStack, 'minecraft:stick', 1))),
+						signature: 'qeda',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$itemGetInventoryStacks,
+						displayName: 'Get Inventory Stacks',
+						internalName: 'item/inventory/stacks',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$MItemStackType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$MItemStackType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'aqwed',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$MoreIotas$itemGetInventoryItems,
+						displayName: 'Get Inventory Items',
+						internalName: 'item/inventory/items',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$MItemTypeType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$MItemTypeType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'dewqa',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$amEnlightened,
+						displayName: 'Epiphany Purification',
+						internalName: 'am_enlightened',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'awqaqqq',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$isBrainswept,
+						displayName: 'Sentience Purification',
+						internalName: 'is_brainswept',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'qqqaqqq',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$createDisplay,
+						displayName: 'Reading Purification',
+						internalName: 'create_display',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'awaqeeeee',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$displayChildren,
+						displayName: 'Parsing Purification',
+						internalName: 'display_children',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$DisplayType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$DisplayType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'dwdeqqqqq',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$displayColor,
+						displayName: 'Lumiere Gambit',
+						internalName: 'display_color',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'awaqeeeeewded',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$displayBold,
+						displayName: 'Gothic Gambit',
+						internalName: 'display_bold',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'awaqeeeeedd',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$displayItalics,
+						displayName: 'Manutius\' Gambit',
+						internalName: 'display_italics',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'awaqeeeeede',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$displayUnderline,
+						displayName: 'Notetaker\'s Gambit',
+						internalName: 'display_underline',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'awaqeeeeedw',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$displayStrikethrough,
+						displayName: 'Editor\'s Gambit',
+						internalName: 'display_strikethrough',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'awaqeeeeedq',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$displayObfuscated,
+						displayName: 'Censor\'s Gambit',
+						internalName: 'display_obfuscated',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'awaqeeeeeda',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$displayFont,
+						displayName: 'Calligrapher\'s Gambit',
+						internalName: 'display_font',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'awaqeeeeedaqa',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$compareStyle,
+						displayName: 'Stylistic Distillation',
+						internalName: 'compare_style',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'dwdeqqqqqdda',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$parseDisplay,
+						displayName: 'Calculator Purification',
+						internalName: 'parse_display',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'dwdewqqqwqqaeq',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$splitDisplay,
+						displayName: 'Cleaving Distillation',
+						internalName: 'split_display',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$DisplayType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$DisplayType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'dwdeqqqwqqqqae',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$disintegrateDisplay,
+						displayName: 'Streaming Purification',
+						internalName: 'disintegrate_display',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$DisplayType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$DisplayType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'dwdeqqqqqdeee',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$isBlockAir,
+						displayName: 'Void Purification',
+						internalName: 'is_block_air',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'edeeeee',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$isBlockReplaceable,
+						displayName: 'Overwriting Purification',
+						internalName: 'is_block_replaceable',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'eaqqqqqe',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$blockHardness,
+						displayName: 'Miner\'s Purification',
+						internalName: 'block_hardness',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'qaqqqqqeeeeedq',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$blockBlastResistance,
+						displayName: 'Demoman\'s Purification',
+						internalName: 'block_blast_resistance',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'qaqqqqqewaawaawa',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$blockstateRotation,
+						displayName: 'Orientation Purification',
+						internalName: 'blockstate_rotation',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$VectorType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$VectorType,
+								$author$project$Logic$App$Types$Vector(
+									_Utils_Tuple3(0, 0, 0)))),
+						signature: 'qaqqqqqwadeeed',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$blockstateCrop,
+						displayName: 'Farmer\'s Purification',
+						internalName: 'blockstate_crop',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'qaqqqqqwaea',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getBlockstates,
+						displayName: 'Facet Purification',
+						internalName: 'get_blockstates',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'qaqqqeqqqwqaww',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$queryBlockstate,
+						displayName: 'Facet Distillation',
+						internalName: 'query_blockstate',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2($author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$Null)),
+						signature: 'qaqqqqqeawa',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$blockSlipperiness,
+						displayName: 'Skating Purification',
+						internalName: 'block_slipperiness',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'qaqqqqqdaqwqwqa',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$blockMapColor,
+						displayName: 'Cartographer\'s Purif.',
+						internalName: 'block_map_color',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$VectorType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$VectorType,
+								$author$project$Logic$App$Types$Vector(
+									_Utils_Tuple3(0, 0, 0)))),
+						signature: 'qwedewqqqqq',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getMessage,
+						displayName: 'News Reflection',
+						internalName: 'get_message',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType, $author$project$Logic$App$Types$DisplayType, $author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'aeeedw',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getMessageIndexed,
+						displayName: 'News Disintegration',
+						internalName: 'get_message_indexed',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType, $author$project$Logic$App$Types$DisplayType, $author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'dqqqaw',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getEnchantments,
+						displayName: 'Thaumaturgist\'s Purif.',
+						internalName: 'get_enchantments',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'waqwwqawqwawaw',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getEnchantmentStrength,
+						displayName: 'Charm Distillation',
+						internalName: 'get_enchantment_strength',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'wdewwedwewdwdw',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$enchantmentWeight,
+						displayName: 'Conjuring Purification',
+						internalName: 'enchantment_weight',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'waawdedwd',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$canItemSupportEnchantment,
+						displayName: 'Conjuring Distillation',
+						internalName: 'can_item_support_enchantment',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'aaqqadaqwqa',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$enchantmentMinLevel,
+						displayName: 'Valley Purification',
+						internalName: 'enchantment_min_level',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'waqwqaqwaaw',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$enchantmentMaxLevel,
+						displayName: 'Peak Purification',
+						internalName: 'enchantment_max_level',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'wdewedqwaaw',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$isEnchantmentCursed,
+						displayName: 'Curse Purification',
+						internalName: 'is_enchantment_cursed',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'aeaqwqaqwaaw',
+						startDirection: $author$project$Logic$App$Types$Northwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$isEnchantmentTreasure,
+						displayName: 'Fable Purification',
+						internalName: 'is_enchantment_treasure',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'aqwqaeaqwddw',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$entityWidth,
+						displayName: 'Caliper\'s Purification',
+						internalName: 'entity_width',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'dwe',
+						startDirection: $author$project$Logic$App$Types$Northwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$theodolite,
+						displayName: 'Theodolite Purif.',
+						internalName: 'theodolite',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$VectorType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$VectorType,
+								$author$project$Logic$App$Types$Vector(
+									_Utils_Tuple3(0, 0, 0)))),
+						signature: 'wqaa',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getHealth,
+						displayName: 'Vitality Purification',
+						internalName: 'get_health',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(20))),
+						signature: 'wddwaqqwawq',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getMaxHealth,
+						displayName: 'Fitness Purification',
+						internalName: 'get_max_health',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(20))),
+						signature: 'wddwwawaeqwawq',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$burning,
+						displayName: 'Inferno Purification',
+						internalName: 'burning',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'eewdead',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$isWet,
+						displayName: 'Enderman\'s Purif.',
+						internalName: 'is_wet',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'qqqqwaadq',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getAir,
+						displayName: 'Suffocation Purif.',
+						internalName: 'get_air',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(15))),
+						signature: 'wwaade',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getMaxAir,
+						displayName: 'Lung Purification',
+						internalName: 'get_max_air',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(15))),
+						signature: 'wwaadee',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$isSleeping,
+						displayName: 'Sloth\'s Purification',
+						internalName: 'is_sleeping',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'aqaew',
+						startDirection: $author$project$Logic$App$Types$Northwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$isSprinting,
+						displayName: 'Racer\'s Purification',
+						internalName: 'is_sprinting',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'eaq',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$isBaby,
+						displayName: 'Youth Purification',
+						internalName: 'is_baby',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'awaqdwaaw',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$breedable,
+						displayName: 'Reproduction Purif.',
+						internalName: 'breedable',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'awaaqdqaawa',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$entityVehicle,
+						displayName: 'Vehicle Purification',
+						internalName: 'entity_vehicle',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$EntityType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2($author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$Null)),
+						signature: 'eqqedwewew',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$entityPassengers,
+						displayName: 'Jockey Purification',
+						internalName: 'entity_passengers',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$EntityType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$EntityType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'qeeqawqwqw',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$angryAt,
+						displayName: 'Fixation Purification',
+						internalName: 'angry_at',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$EntityType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2($author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$Null)),
+						signature: 'aqwedewwded',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$angryTime,
+						displayName: 'Grudge Purification',
+						internalName: 'angry_time',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'aqawwqaqwed',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$lastAttacker,
+						displayName: 'Victim Purification',
+						internalName: 'last_attacker',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$EntityType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2($author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$Null)),
+						signature: 'qqqwaeqa',
+						startDirection: $author$project$Logic$App$Types$Northwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$lastAttacked,
+						displayName: 'Scar Purification',
+						internalName: 'last_attacked',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'deqdweee',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$entityName,
+						displayName: 'Name Purification',
+						internalName: 'entity_name',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'edeweedw',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$petOwner,
+						displayName: 'Adoration Purification',
+						internalName: 'pet_owner',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$EntityType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2($author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$Null)),
+						signature: 'qdaqwawqeewde',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$isMonster,
+						displayName: 'Malevolence Purif.',
+						internalName: 'is_monster',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'qaedwaa',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$shooter,
+						displayName: 'Shooter Purification',
+						internalName: 'shooter',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$EntityType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2($author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$Null)),
+						signature: 'aadedade',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$absorptionHearts,
+						displayName: 'Absorption Purification',
+						internalName: 'absorption_hearts',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'waawedwdwd',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$envAmbit,
+						displayName: 'Ambit Purification',
+						internalName: 'env_ambit',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(true))),
+						signature: 'wawaw',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$envStaff,
+						displayName: 'Staff Reflection',
+						internalName: 'env_staff',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'waaq',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$envOffhand,
+						displayName: 'Dexterity Reflection',
+						internalName: 'env_offhand',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'qaqqqwaaq',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$envPackagedHex,
+						displayName: 'Device Reflection',
+						internalName: 'env_packaged_hex',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'waaqwwaqqqqq',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$envCircle,
+						displayName: 'Constructed Reflection',
+						internalName: 'env_circle',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'waaqdeaqwqae',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getPlayerHunger,
+						displayName: 'Hunger Purification',
+						internalName: 'get_player_hunger',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(20))),
+						signature: 'qqqadaddw',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getPlayerSaturation,
+						displayName: 'Stamina Purification',
+						internalName: 'get_player_saturation',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(5))),
+						signature: 'qqqadaddq',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getHunger,
+						displayName: 'Calorie Purification',
+						internalName: 'get_hunger',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'adaqqqddqe',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getSaturation,
+						displayName: 'Satiation Purification',
+						internalName: 'get_saturation',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'adaqqqddqw',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$isMeat,
+						displayName: 'Flesh Purification',
+						internalName: 'is_meat',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'adaqqqddaed',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$isSnack,
+						displayName: 'Dessert Purification',
+						internalName: 'is_snack',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'adaqqqddaq',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$edible,
+						displayName: 'Edibility Purification',
+						internalName: 'edible',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'adaqqqdd',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$identify,
+						displayName: 'Detective\'s Purif.',
+						internalName: 'identify',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$IdentifierType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IdentifierType,
+								$author$project$Logic$App$Types$Identifier('minecraft:stone'))),
+						signature: 'qqqqqe',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$classify,
+						displayName: 'Modicum Purif.',
+						internalName: 'classify',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$IdentifierType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IdentifierType,
+								$author$project$Logic$App$Types$Identifier('hexcasting:number'))),
+						signature: 'edqdeq',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getStack,
+						displayName: 'Item Purification',
+						internalName: 'get_stack',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$ItemStackType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$ItemStackType,
+								A2($author$project$Logic$App$Types$ItemStack, 'minecraft:stone', 1))),
+						signature: 'edeedq',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$createStack,
+						displayName: 'Offer Distillation',
+						internalName: 'create_stack',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$ItemStackType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$ItemStackType,
+								A2($author$project$Logic$App$Types$ItemStack, 'minecraft:stone', 1))),
+						signature: 'qaqqae',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getMainhand,
+						displayName: 'Tool Purification',
+						internalName: 'get_mainhand',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$ItemStackType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$ItemStackType,
+								A2($author$project$Logic$App$Types$ItemStack, 'minecraft:stick', 1))),
+						signature: 'qaqqqq',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getOffhand,
+						displayName: 'Accessory Purification',
+						internalName: 'get_offhand',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$ItemStackType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$ItemStackType,
+								A2($author$project$Logic$App$Types$ItemStack, 'minecraft:stick', 1))),
+						signature: 'edeeee',
+						startDirection: $author$project$Logic$App$Types$Northwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getArmor,
+						displayName: 'Aegis Purification',
+						internalName: 'get_armor',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$ItemStackType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$ItemStackType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'qaqddqeeeeqd',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getEnderChest,
+						displayName: 'Pocket Reflection',
+						internalName: 'get_ender_chest',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$ItemStackType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$ItemStackType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'qaqdqaqdeeewedw',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getInventory,
+						displayName: 'Cart Purification',
+						internalName: 'get_inventory',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$ItemStackType),
+								$author$project$Logic$App$Types$NullType
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$ItemStackType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'edeeeeeqdee',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getBlockInventory,
+						displayName: 'Chest Purification',
+						internalName: 'get_block_inventory',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$ItemStackType),
+								$author$project$Logic$App$Types$NullType
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$ItemStackType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'qaqqqqqeaqq',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$countStack,
+						displayName: 'Storage Purification',
+						internalName: 'count_stack',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(1))),
+						signature: 'qaqqwqqqw',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$countMaxStack,
+						displayName: 'Warehouse Purification',
+						internalName: 'count_max_stack',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(64))),
+						signature: 'edeeweeew',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$damageStack,
+						displayName: 'Deterioration Purif.',
+						internalName: 'damage_stack',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'eeweeewdeq',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$damageMaxStack,
+						displayName: 'Fragility Purification',
+						internalName: 'damage_max_stack',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'qqwqqqwaqe',
+						startDirection: $author$project$Logic$App$Types$Northwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$itemVariant,
+						displayName: 'Glamour Purification',
+						internalName: 'item_variant',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2($author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$Null)),
+						signature: 'dwaawaqwa',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$itemVariantMax,
+						displayName: 'Glamour Purification II',
+						internalName: 'item_variant_max',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2($author$project$Logic$App$Types$NullType, $author$project$Logic$App$Types$Null)),
+						signature: 'dwaawaqwawq',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$itemName,
+						displayName: 'Appellation Purification',
+						internalName: 'item_name',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'qwawqwaqea',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$itemLore,
+						displayName: 'Legacy Purification',
+						internalName: 'item_lore',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$DisplayType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$DisplayType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'dwewdwedea',
+						startDirection: $author$project$Logic$App$Types$Northwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$readBook,
+						displayName: 'Literature Purification',
+						internalName: 'read_book',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$DisplayType),
+								$author$project$Logic$App$Types$NullType
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$DisplayType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'awqqwaqd',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$bookSources,
+						displayName: 'Bibliography Purif.',
+						internalName: 'book_sources',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$DisplayType, $author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$DisplayType,
+								A2($author$project$Logic$App$Types$Display, '', ''))),
+						signature: 'eaedweew',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$itemRarity,
+						displayName: 'Collector Purification',
+						internalName: 'item_rarity',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'wqqed',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$envMedia,
+						displayName: 'Media Reflection',
+						internalName: 'env_media',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'dde',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getMedia,
+						displayName: 'Media Purification',
+						internalName: 'get_media',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'ddew',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getMaxMedia,
+						displayName: 'Potential Purification',
+						internalName: 'get_max_media',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'ddea',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$catVariant,
+						displayName: 'Feline Purification',
+						internalName: 'cat_variant',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$IdentifierType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IdentifierType,
+								$author$project$Logic$App$Types$Identifier('minecraft:tabby'))),
+						signature: 'wqwqqwqwawaaw',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$creeperFuse,
+						displayName: 'Anger Purification',
+						internalName: 'creeper_fuse',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'dedwaqwede',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getItemFrameRotation,
+						displayName: 'Showcase Purification',
+						internalName: 'get_item_frame_rotation',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'ewdwewdea',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{action: $author$project$Logic$App$Patterns$Hexpose$setItemFrameRotation, displayName: 'Showcase Gambit', internalName: 'set_item_frame_rotation', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'awqwawqaa', startDirection: $author$project$Logic$App$Types$Southwest},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$paintingVariant,
+						displayName: 'Artistic Purification',
+						internalName: 'painting_variant',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$IdentifierType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IdentifierType,
+								$author$project$Logic$App$Types$Identifier('minecraft:kebab'))),
+						signature: 'wawwwqwwawwwqadaqeda',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getEffectsEntity,
+						displayName: 'Diagnosis Purification',
+						internalName: 'get_effects_entity',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'wqqq',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getEffectsItem,
+						displayName: 'Prescription Purif.',
+						internalName: 'get_effects_item',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'wqqqadee',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getEffectCategory,
+						displayName: 'Condition Purification',
+						internalName: 'get_effect_category',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'wqqqaawd',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getEffectAmplifier,
+						displayName: 'Concentration Dstl.',
+						internalName: 'get_effect_amplifier',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'wqqqaqwa',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getEffectDuration,
+						displayName: 'Clearance Distillation',
+						internalName: 'get_effect_duration',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'wqqqaqwdd',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$blockTags,
+						displayName: 'Geology Purification',
+						internalName: 'block_tags',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'qaqqqqqwqqd',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$entityTags,
+						displayName: 'Genus Purification',
+						internalName: 'entity_tags',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'qaqqqqwqqd',
+						startDirection: $author$project$Logic$App$Types$Northeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$itemTags,
+						displayName: 'Bauble Purification',
+						internalName: 'item_tags',
+						outputOptions: _List_fromArray(
+							[
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType)
+							]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IotaListType($author$project$Logic$App$Types$IdentifierType),
+								$author$project$Logic$App$Types$IotaList($elm$core$Array$empty))),
+						signature: 'aqawawqqqd',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$villagerLevel,
+						displayName: 'Tier Purification',
+						internalName: 'villager_level',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(1))),
+						signature: 'qeqwqwqwqwqeqawdaeaeaeaeaea',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$villagerProfession,
+						displayName: 'Professional Purif.',
+						internalName: 'villager_profession',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$IdentifierType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IdentifierType,
+								$author$project$Logic$App$Types$Identifier('minecraft:farmer'))),
+						signature: 'qeqwqwqwqwqeqawewawqwawadeeeee',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$villagerType,
+						displayName: 'Culture Purification',
+						internalName: 'villager_type',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$IdentifierType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IdentifierType,
+								$author$project$Logic$App$Types$Identifier('minecraft:plains'))),
+						signature: 'qeqwqwqwqwqeqaweqqqqqwded',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$biomeToVillager,
+						displayName: 'Nurture Purification',
+						internalName: 'biome_to_villager',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$IdentifierType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IdentifierType,
+								$author$project$Logic$App$Types$Identifier('minecraft:plains'))),
+						signature: 'qeqwqwqwqwqeqawewwqqwwqwwqqww',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getWeather,
+						displayName: 'Meterologist\'s Refl.',
+						internalName: 'get_weather',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'eweweweweweeeaedqdqde',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getLight,
+						displayName: 'Luminance Purification',
+						internalName: 'get_light',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(15))),
+						signature: 'wqwqwqwqwqwaeqqqqaeqaeaeaeaw',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getPower,
+						displayName: 'Battery Purification',
+						internalName: 'get_power',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'qwqwqwqwqwqqwwaadwdaaww',
+						startDirection: $author$project$Logic$App$Types$East
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getComparator,
+						displayName: 'Peripheral Purification',
+						internalName: 'get_comparator',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType, $author$project$Logic$App$Types$NullType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'eweweweweweewwddawaddww',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getDay,
+						displayName: 'Circadian Reflection',
+						internalName: 'get_day',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'wwawwawwqqawwdwwdwwaqwqwqwqwq',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getTime,
+						displayName: 'Temporal Reflection',
+						internalName: 'get_time',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0))),
+						signature: 'wddwaqqwqaddaqqwddwaqqwqaddaq',
+						startDirection: $author$project$Logic$App$Types$Southeast
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getBiome,
+						displayName: 'Geographical Purif.',
+						internalName: 'get_biome',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$IdentifierType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IdentifierType,
+								$author$project$Logic$App$Types$Identifier('minecraft:plains'))),
+						signature: 'qwqwqawdqqaqqdwaqwqwq',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getDimension,
+						displayName: 'Plane Reflection',
+						internalName: 'get_dimension',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$IdentifierType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$IdentifierType,
+								$author$project$Logic$App$Types$Identifier('minecraft:overworld'))),
+						signature: 'qwqwqwqwqwqqaedwaqd',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getMoon,
+						displayName: 'Lunar Reflection',
+						internalName: 'get_moon',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(0.5))),
+						signature: 'eweweweweweeweeedadw',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getSlime,
+						displayName: 'Exorcist\'s Purification',
+						internalName: 'get_slime',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(false))),
+						signature: 'eweweweweweeweeeeewdeee',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getChunkLoaded,
+						displayName: 'Reality Purification',
+						internalName: 'get_chunk_loaded',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$NumberType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$NumberType,
+								$author$project$Logic$App$Types$Number(3))),
+						signature: 'eweweweweweeedaawaqd',
+						startDirection: $author$project$Logic$App$Types$West
+					},
+						{
+						action: $author$project$Logic$App$Patterns$Hexpose$getEinstein,
+						displayName: 'Distortion Reflection',
+						internalName: 'get_einstein',
+						outputOptions: _List_fromArray(
+							[$author$project$Logic$App$Types$BooleanType]),
+						selectedOutput: $elm$core$Maybe$Just(
+							_Utils_Tuple2(
+								$author$project$Logic$App$Types$BooleanType,
+								$author$project$Logic$App$Types$Boolean(true))),
+						signature: 'aqwawqwqqwqwqwqwqwq',
+						startDirection: $author$project$Logic$App$Types$Southwest
+					},
+						{action: $author$project$Logic$App$Patterns$Hexpose$setItemName, displayName: 'Name Item', internalName: 'set_item_name', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'qwawqwaadwa', startDirection: $author$project$Logic$App$Types$Southeast},
+						{action: $author$project$Logic$App$Patterns$Hexpose$setItemLore, displayName: 'Describe Item', internalName: 'set_item_lore', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'dwewdweedwa', startDirection: $author$project$Logic$App$Types$Northwest},
 						{action: $author$project$Logic$App$Patterns$Math$average, displayName: 'xm1221\'s Test', internalName: 'average', outputOptions: _List_Nil, selectedOutput: $elm$core$Maybe$Nothing, signature: 'adaw', startDirection: $author$project$Logic$App$Types$East}
 					]))));
 }
@@ -15772,14 +19157,44 @@ var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProje
 var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedBoolean = function (a) {
 	return {$: 'SimplifiedBoolean', a: a};
 };
+var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedDisplay = F2(
+	function (a, b) {
+		return {$: 'SimplifiedDisplay', a: a, b: b};
+	});
 var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedEntity = function (a) {
 	return {$: 'SimplifiedEntity', a: a};
 };
 var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedGarbage = function (a) {
 	return {$: 'SimplifiedGarbage', a: a};
 };
+var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedIdentifier = function (a) {
+	return {$: 'SimplifiedIdentifier', a: a};
+};
 var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedIotaList = function (a) {
 	return {$: 'SimplifiedIotaList', a: a};
+};
+var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedItemStack = F2(
+	function (a, b) {
+		return {$: 'SimplifiedItemStack', a: a, b: b};
+	});
+var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMEntityType = function (a) {
+	return {$: 'SimplifiedMEntityType', a: a};
+};
+var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMIotaType = function (a) {
+	return {$: 'SimplifiedMIotaType', a: a};
+};
+var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMItemStack = F2(
+	function (a, b) {
+		return {$: 'SimplifiedMItemStack', a: a, b: b};
+	});
+var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMItemType = function (a) {
+	return {$: 'SimplifiedMItemType', a: a};
+};
+var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMMatrix = function (a) {
+	return {$: 'SimplifiedMMatrix', a: a};
+};
+var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMString = function (a) {
+	return {$: 'SimplifiedMString', a: a};
 };
 var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedNull = {$: 'SimplifiedNull'};
 var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedNumber = function (a) {
@@ -15792,6 +19207,9 @@ var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProje
 	function (a, b) {
 		return {$: 'SimplifiedPatternIota', a: a, b: b};
 	});
+var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedProperty = function (a) {
+	return {$: 'SimplifiedProperty', a: a};
+};
 var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedVector = function (a) {
 	return {$: 'SimplifiedVector', a: a};
 };
@@ -16410,100 +19828,196 @@ var $MartinSStewart$elm_serialize$Serialize$variant2 = F3(
 	});
 function $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$cyclic$iotaCodec() {
 	return $MartinSStewart$elm_serialize$Serialize$finishCustomType(
-		A3(
-			$MartinSStewart$elm_serialize$Serialize$variant1,
-			$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedOpenParenthesis,
-			$MartinSStewart$elm_serialize$Serialize$array(
-				$MartinSStewart$elm_serialize$Serialize$lazy(
-					function (_v2) {
-						return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$cyclic$iotaCodec();
-					})),
+		A4(
+			$MartinSStewart$elm_serialize$Serialize$variant2,
+			$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMItemStack,
+			$MartinSStewart$elm_serialize$Serialize$string,
+			$MartinSStewart$elm_serialize$Serialize$float,
 			A3(
 				$MartinSStewart$elm_serialize$Serialize$variant1,
-				$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedGarbage,
-				$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$mishapCodec,
-				A2(
-					$MartinSStewart$elm_serialize$Serialize$variant0,
-					$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedNull,
-					A4(
-						$MartinSStewart$elm_serialize$Serialize$variant2,
-						$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedPatternIota,
-						$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$patternCodec,
-						$MartinSStewart$elm_serialize$Serialize$bool,
+				$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMItemType,
+				$MartinSStewart$elm_serialize$Serialize$string,
+				A3(
+					$MartinSStewart$elm_serialize$Serialize$variant1,
+					$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMEntityType,
+					$MartinSStewart$elm_serialize$Serialize$string,
+					A3(
+						$MartinSStewart$elm_serialize$Serialize$variant1,
+						$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMIotaType,
+						$MartinSStewart$elm_serialize$Serialize$string,
 						A3(
 							$MartinSStewart$elm_serialize$Serialize$variant1,
-							$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedIotaList,
-							$MartinSStewart$elm_serialize$Serialize$array(
-								$MartinSStewart$elm_serialize$Serialize$lazy(
-									function (_v1) {
-										return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$cyclic$iotaCodec();
-									})),
+							$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMMatrix,
+							$MartinSStewart$elm_serialize$Serialize$string,
 							A3(
 								$MartinSStewart$elm_serialize$Serialize$variant1,
-								$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedEntity,
+								$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMString,
 								$MartinSStewart$elm_serialize$Serialize$string,
 								A3(
 									$MartinSStewart$elm_serialize$Serialize$variant1,
-									$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedBoolean,
-									$MartinSStewart$elm_serialize$Serialize$bool,
-									A3(
-										$MartinSStewart$elm_serialize$Serialize$variant1,
-										$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedVector,
-										A3($MartinSStewart$elm_serialize$Serialize$triple, $MartinSStewart$elm_serialize$Serialize$float, $MartinSStewart$elm_serialize$Serialize$float, $MartinSStewart$elm_serialize$Serialize$float),
-										A3(
-											$MartinSStewart$elm_serialize$Serialize$variant1,
-											$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedNumber,
-											$MartinSStewart$elm_serialize$Serialize$float,
-											$MartinSStewart$elm_serialize$Serialize$customType(
-												function (numberEncoder) {
-													return function (vectorEncoder) {
-														return function (booleanEncoder) {
-															return function (entityEncoder) {
-																return function (iotaListEncoder) {
-																	return function (patternIotaEncoder) {
-																		return function (nullEncoder) {
-																			return function (garbageEncoder) {
-																				return function (openParenthesisEncoder) {
-																					return function (value) {
-																						switch (value.$) {
-																							case 'SimplifiedNumber':
-																								var number = value.a;
-																								return numberEncoder(number);
-																							case 'SimplifiedVector':
-																								var vector = value.a;
-																								return vectorEncoder(vector);
-																							case 'SimplifiedBoolean':
-																								var _boolean = value.a;
-																								return booleanEncoder(_boolean);
-																							case 'SimplifiedEntity':
-																								var entity = value.a;
-																								return entityEncoder(entity);
-																							case 'SimplifiedIotaList':
-																								var list = value.a;
-																								return iotaListEncoder(list);
-																							case 'SimplifiedPatternIota':
-																								var pattern = value.a;
-																								var considered = value.b;
-																								return A2(patternIotaEncoder, pattern, considered);
-																							case 'SimplifiedNull':
-																								return nullEncoder;
-																							case 'SimplifiedGarbage':
-																								var mishap = value.a;
-																								return garbageEncoder(mishap);
-																							default:
-																								var list = value.a;
-																								return openParenthesisEncoder(list);
-																						}
-																					};
-																				};
-																			};
-																		};
-																	};
-																};
-															};
-														};
-													};
-												})))))))))));
+									$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedProperty,
+									$MartinSStewart$elm_serialize$Serialize$string,
+									A4(
+										$MartinSStewart$elm_serialize$Serialize$variant2,
+										$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedItemStack,
+										$MartinSStewart$elm_serialize$Serialize$string,
+										$MartinSStewart$elm_serialize$Serialize$float,
+										A4(
+											$MartinSStewart$elm_serialize$Serialize$variant2,
+											$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedDisplay,
+											$MartinSStewart$elm_serialize$Serialize$string,
+											$MartinSStewart$elm_serialize$Serialize$string,
+											A3(
+												$MartinSStewart$elm_serialize$Serialize$variant1,
+												$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedIdentifier,
+												$MartinSStewart$elm_serialize$Serialize$string,
+												A3(
+													$MartinSStewart$elm_serialize$Serialize$variant1,
+													$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedOpenParenthesis,
+													$MartinSStewart$elm_serialize$Serialize$array(
+														$MartinSStewart$elm_serialize$Serialize$lazy(
+															function (_v2) {
+																return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$cyclic$iotaCodec();
+															})),
+													A3(
+														$MartinSStewart$elm_serialize$Serialize$variant1,
+														$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedGarbage,
+														$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$mishapCodec,
+														A2(
+															$MartinSStewart$elm_serialize$Serialize$variant0,
+															$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedNull,
+															A4(
+																$MartinSStewart$elm_serialize$Serialize$variant2,
+																$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedPatternIota,
+																$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$patternCodec,
+																$MartinSStewart$elm_serialize$Serialize$bool,
+																A3(
+																	$MartinSStewart$elm_serialize$Serialize$variant1,
+																	$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedIotaList,
+																	$MartinSStewart$elm_serialize$Serialize$array(
+																		$MartinSStewart$elm_serialize$Serialize$lazy(
+																			function (_v1) {
+																				return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$cyclic$iotaCodec();
+																			})),
+																	A3(
+																		$MartinSStewart$elm_serialize$Serialize$variant1,
+																		$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedEntity,
+																		$MartinSStewart$elm_serialize$Serialize$string,
+																		A3(
+																			$MartinSStewart$elm_serialize$Serialize$variant1,
+																			$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedBoolean,
+																			$MartinSStewart$elm_serialize$Serialize$bool,
+																			A3(
+																				$MartinSStewart$elm_serialize$Serialize$variant1,
+																				$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedVector,
+																				A3($MartinSStewart$elm_serialize$Serialize$triple, $MartinSStewart$elm_serialize$Serialize$float, $MartinSStewart$elm_serialize$Serialize$float, $MartinSStewart$elm_serialize$Serialize$float),
+																				A3(
+																					$MartinSStewart$elm_serialize$Serialize$variant1,
+																					$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedNumber,
+																					$MartinSStewart$elm_serialize$Serialize$float,
+																					$MartinSStewart$elm_serialize$Serialize$customType(
+																						function (numberEncoder) {
+																							return function (vectorEncoder) {
+																								return function (booleanEncoder) {
+																									return function (entityEncoder) {
+																										return function (iotaListEncoder) {
+																											return function (patternIotaEncoder) {
+																												return function (nullEncoder) {
+																													return function (garbageEncoder) {
+																														return function (openParenthesisEncoder) {
+																															return function (identifierEncoder) {
+																																return function (displayEncoder) {
+																																	return function (itemStackEncoder) {
+																																		return function (propertyEncoder) {
+																																			return function (mStringEncoder) {
+																																				return function (mMatrixEncoder) {
+																																					return function (mIotaTypeEncoder) {
+																																						return function (mEntityTypeEncoder) {
+																																							return function (mItemTypeEncoder) {
+																																								return function (mItemStackEncoder) {
+																																									return function (value) {
+																																										switch (value.$) {
+																																											case 'SimplifiedNumber':
+																																												var number = value.a;
+																																												return numberEncoder(number);
+																																											case 'SimplifiedVector':
+																																												var vector = value.a;
+																																												return vectorEncoder(vector);
+																																											case 'SimplifiedBoolean':
+																																												var _boolean = value.a;
+																																												return booleanEncoder(_boolean);
+																																											case 'SimplifiedEntity':
+																																												var entity = value.a;
+																																												return entityEncoder(entity);
+																																											case 'SimplifiedIotaList':
+																																												var list = value.a;
+																																												return iotaListEncoder(list);
+																																											case 'SimplifiedPatternIota':
+																																												var pattern = value.a;
+																																												var considered = value.b;
+																																												return A2(patternIotaEncoder, pattern, considered);
+																																											case 'SimplifiedNull':
+																																												return nullEncoder;
+																																											case 'SimplifiedGarbage':
+																																												var mishap = value.a;
+																																												return garbageEncoder(mishap);
+																																											case 'SimplifiedOpenParenthesis':
+																																												var list = value.a;
+																																												return openParenthesisEncoder(list);
+																																											case 'SimplifiedIdentifier':
+																																												var id = value.a;
+																																												return identifierEncoder(id);
+																																											case 'SimplifiedDisplay':
+																																												var text_ = value.a;
+																																												var style_ = value.b;
+																																												return A2(displayEncoder, text_, style_);
+																																											case 'SimplifiedItemStack':
+																																												var id = value.a;
+																																												var count = value.b;
+																																												return A2(itemStackEncoder, id, count);
+																																											case 'SimplifiedProperty':
+																																												var key = value.a;
+																																												return propertyEncoder(key);
+																																											case 'SimplifiedMString':
+																																												var s = value.a;
+																																												return mStringEncoder(s);
+																																											case 'SimplifiedMMatrix':
+																																												var s = value.a;
+																																												return mMatrixEncoder(s);
+																																											case 'SimplifiedMIotaType':
+																																												var s = value.a;
+																																												return mIotaTypeEncoder(s);
+																																											case 'SimplifiedMEntityType':
+																																												var s = value.a;
+																																												return mEntityTypeEncoder(s);
+																																											case 'SimplifiedMItemType':
+																																												var s = value.a;
+																																												return mItemTypeEncoder(s);
+																																											default:
+																																												var id = value.a;
+																																												var count = value.b;
+																																												return A2(mItemStackEncoder, id, count);
+																																										}
+																																									};
+																																								};
+																																							};
+																																						};
+																																					};
+																																				};
+																																			};
+																																		};
+																																	};
+																																};
+																															};
+																														};
+																													};
+																												};
+																											};
+																										};
+																									};
+																								};
+																							};
+																						})))))))))))))))))))));
 }
 try {
 	var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$iotaCodec = $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$cyclic$iotaCodec();
@@ -16818,7 +20332,7 @@ var $author$project$Logic$App$Utils$GetIotaValue$getIotaValueAsString = function
 				}
 			}();
 			return 'Garbage (' + (mishapMessage + ')');
-		default:
+		case 'OpenParenthesis':
 			var list = iota.a;
 			return 'List: ' + A2(
 				$elm$core$String$join,
@@ -16835,6 +20349,39 @@ var $author$project$Logic$App$Utils$GetIotaValue$getIotaValueAsString = function
 						}
 					},
 					$elm$core$Array$toList(list)));
+		case 'Identifier':
+			var id = iota.a;
+			return '\"' + (id + '\"');
+		case 'Display':
+			var text_ = iota.a;
+			var style_ = iota.b;
+			return '\"' + (text_ + '\"');
+		case 'ItemStack':
+			var id = iota.a;
+			var count = iota.b;
+			return id + (' x' + $elm$core$String$fromFloat(count));
+		case 'Property':
+			var key = iota.a;
+			return 'Property \"' + (key + '\"');
+		case 'MString':
+			var s = iota.a;
+			return '\"' + (s + '\"');
+		case 'MMatrix':
+			var s = iota.a;
+			return 'Matrix[' + (s + ']');
+		case 'MIotaType':
+			var s = iota.a;
+			return 'IotaType:' + s;
+		case 'MEntityType':
+			var s = iota.a;
+			return 'EntityType:' + s;
+		case 'MItemType':
+			var s = iota.a;
+			return 'ItemType:' + s;
+		default:
+			var id = iota.a;
+			var count = iota.b;
+			return 'MItemStack ' + (id + (' x' + $elm$core$String$fromFloat(count)));
 	}
 };
 var $elm$core$Elm$JsArray$indexedMap = _JsArray_indexedMap;
@@ -17130,13 +20677,46 @@ var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProje
 			case 'SimplifiedGarbage':
 				var mishap = simplifiedIota.a;
 				return $author$project$Logic$App$Types$Garbage(mishap);
-			default:
+			case 'SimplifiedOpenParenthesis':
 				var list = simplifiedIota.a;
 				return $author$project$Logic$App$Types$OpenParenthesis(
 					A2(
 						$elm$core$Array$map,
 						$author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$unSimplifyIota(macros),
 						list));
+			case 'SimplifiedIdentifier':
+				var id = simplifiedIota.a;
+				return $author$project$Logic$App$Types$Identifier(id);
+			case 'SimplifiedDisplay':
+				var text_ = simplifiedIota.a;
+				var style_ = simplifiedIota.b;
+				return A2($author$project$Logic$App$Types$Display, text_, style_);
+			case 'SimplifiedItemStack':
+				var id = simplifiedIota.a;
+				var count = simplifiedIota.b;
+				return A2($author$project$Logic$App$Types$ItemStack, id, count);
+			case 'SimplifiedProperty':
+				var key = simplifiedIota.a;
+				return $author$project$Logic$App$Types$Property(key);
+			case 'SimplifiedMString':
+				var s = simplifiedIota.a;
+				return $author$project$Logic$App$Types$MString(s);
+			case 'SimplifiedMMatrix':
+				var s = simplifiedIota.a;
+				return $author$project$Logic$App$Types$MMatrix(s);
+			case 'SimplifiedMIotaType':
+				var s = simplifiedIota.a;
+				return $author$project$Logic$App$Types$MIotaType(s);
+			case 'SimplifiedMEntityType':
+				var s = simplifiedIota.a;
+				return $author$project$Logic$App$Types$MEntityType(s);
+			case 'SimplifiedMItemType':
+				var s = simplifiedIota.a;
+				return $author$project$Logic$App$Types$MItemType(s);
+			default:
+				var id = simplifiedIota.a;
+				var count = simplifiedIota.b;
+				return A2($author$project$Logic$App$Types$MItemStack, id, count);
 		}
 	});
 var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$unSimplifyCastingContext = function (simplifiedCastingContext) {
@@ -20045,8 +23625,28 @@ var $author$project$Settings$Theme$iotaColorMap = function (iota) {
 			return '#354C3F';
 		case 'Garbage':
 			return '#4F3737';
-		default:
+		case 'OpenParenthesis':
 			return '#4B4845';
+		case 'Identifier':
+			return '#E6C24C';
+		case 'Display':
+			return '#DB3F30';
+		case 'ItemStack':
+			return '#FC0362';
+		case 'Property':
+			return '#74C26C';
+		case 'MString':
+			return '#6BC76B';
+		case 'MMatrix':
+			return '#6B8FC7';
+		case 'MIotaType':
+			return '#C76B8F';
+		case 'MEntityType':
+			return '#C7A66B';
+		case 'MItemType':
+			return '#8FC76B';
+		default:
+			return '#C76B6B';
 	}
 };
 var $author$project$Logic$App$Utils$GetIotaValue$getIotaValueAsHtmlMsg = F3(
@@ -21433,8 +25033,28 @@ var $author$project$Logic$App$Utils$GetIotaValue$getIotaTypeAsString = function 
 			return 'List: ' + $author$project$Logic$App$Utils$GetIotaValue$getIotaTypeAsString(iotaType);
 		case 'PatternType':
 			return 'Pattern';
-		default:
+		case 'GarbageType':
 			return 'Garbage';
+		case 'IdentifierType':
+			return 'Identifier';
+		case 'DisplayType':
+			return 'Display';
+		case 'ItemStackType':
+			return 'ItemStack';
+		case 'PropertyType':
+			return 'Property';
+		case 'MStringType':
+			return 'MString';
+		case 'MMatrixType':
+			return 'MMatrix';
+		case 'MIotaTypeType':
+			return 'MIotaType';
+		case 'MEntityTypeType':
+			return 'MEntityType';
+		case 'MItemTypeType':
+			return 'MItemType';
+		default:
+			return 'MItemStack';
 	}
 };
 var $author$project$Logic$App$Utils$GetIotaValue$getIotaTypeFromString = function (string) {
@@ -21968,7 +25588,7 @@ var $author$project$Components$App$Panels$PatternPanel$renderPatternList = F9(
 											])),
 									function () {
 										var _v0 = pattern.selectedOutput;
-										_v0$4:
+										_v0$14:
 										while (true) {
 											if (_v0.$ === 'Just') {
 												switch (_v0.a.a.$) {
@@ -22125,7 +25745,7 @@ var $author$project$Components$App$Panels$PatternPanel$renderPatternList = F9(
 																		]))
 																]);
 														} else {
-															break _v0$4;
+															break _v0$14;
 														}
 													case 'NumberType':
 														if (_v0.a.b.$ === 'Number') {
@@ -22191,7 +25811,7 @@ var $author$project$Components$App$Panels$PatternPanel$renderPatternList = F9(
 																		]))
 																]);
 														} else {
-															break _v0$4;
+															break _v0$14;
 														}
 													case 'EntityType':
 														if (_v0.a.b.$ === 'Entity') {
@@ -22258,7 +25878,7 @@ var $author$project$Components$App$Panels$PatternPanel$renderPatternList = F9(
 																		]))
 																]);
 														} else {
-															break _v0$4;
+															break _v0$14;
 														}
 													case 'IotaListType':
 														if ((_v0.a.a.a.$ === 'EntityType') && (_v0.a.b.$ === 'IotaList')) {
@@ -22327,13 +25947,528 @@ var $author$project$Components$App$Panels$PatternPanel$renderPatternList = F9(
 																		]))
 																]);
 														} else {
-															break _v0$4;
+															break _v0$14;
+														}
+													case 'IdentifierType':
+														if (_v0.a.b.$ === 'Identifier') {
+															var _v10 = _v0.a;
+															var _v11 = _v10.a;
+															var id = _v10.b.a;
+															return _List_fromArray(
+																[
+																	A2(
+																	$elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			$elm$html$Html$Attributes$class('output_option_box'),
+																			A2($elm$html$Html$Attributes$style, 'grid-template-columns', '2.1fr 3fr'),
+																			opacity
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			$elm$html$Html$label,
+																			_List_Nil,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$text('ID:')
+																				])),
+																			A2(
+																			$elm$html$Html$input,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$Attributes$placeholder('minecraft:stone'),
+																					$elm$html$Html$Attributes$value(id),
+																					$elm$html$Html$Events$onInput(
+																					function (str) {
+																						return A2(
+																							$author$project$Logic$App$Msg$UpdatePatternOuptut,
+																							index,
+																							_Utils_update(
+																								pattern,
+																								{
+																									selectedOutput: $elm$core$Maybe$Just(
+																										_Utils_Tuple2(
+																											$author$project$Logic$App$Types$IdentifierType,
+																											$author$project$Logic$App$Types$Identifier(str)))
+																								}));
+																					})
+																				]),
+																			_List_Nil)
+																		]))
+																]);
+														} else {
+															break _v0$14;
+														}
+													case 'MStringType':
+														if (_v0.a.b.$ === 'MString') {
+															var _v12 = _v0.a;
+															var _v13 = _v12.a;
+															var s = _v12.b.a;
+															return _List_fromArray(
+																[
+																	A2(
+																	$elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			$elm$html$Html$Attributes$class('output_option_box'),
+																			A2($elm$html$Html$Attributes$style, 'grid-template-columns', '2.1fr 3fr'),
+																			opacity
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			$elm$html$Html$label,
+																			_List_Nil,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$text('String:')
+																				])),
+																			A2(
+																			$elm$html$Html$input,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$Attributes$placeholder('text'),
+																					$elm$html$Html$Attributes$value(s),
+																					$elm$html$Html$Events$onInput(
+																					function (str) {
+																						return A2(
+																							$author$project$Logic$App$Msg$UpdatePatternOuptut,
+																							index,
+																							_Utils_update(
+																								pattern,
+																								{
+																									selectedOutput: $elm$core$Maybe$Just(
+																										_Utils_Tuple2(
+																											$author$project$Logic$App$Types$MStringType,
+																											$author$project$Logic$App$Types$MString(str)))
+																								}));
+																					})
+																				]),
+																			_List_Nil)
+																		]))
+																]);
+														} else {
+															break _v0$14;
+														}
+													case 'PropertyType':
+														if (_v0.a.b.$ === 'Property') {
+															var _v14 = _v0.a;
+															var _v15 = _v14.a;
+															var key = _v14.b.a;
+															return _List_fromArray(
+																[
+																	A2(
+																	$elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			$elm$html$Html$Attributes$class('output_option_box'),
+																			A2($elm$html$Html$Attributes$style, 'grid-template-columns', '2.1fr 3fr'),
+																			opacity
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			$elm$html$Html$label,
+																			_List_Nil,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$text('Key:')
+																				])),
+																			A2(
+																			$elm$html$Html$input,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$Attributes$placeholder('property_key'),
+																					$elm$html$Html$Attributes$value(key),
+																					$elm$html$Html$Events$onInput(
+																					function (str) {
+																						return A2(
+																							$author$project$Logic$App$Msg$UpdatePatternOuptut,
+																							index,
+																							_Utils_update(
+																								pattern,
+																								{
+																									selectedOutput: $elm$core$Maybe$Just(
+																										_Utils_Tuple2(
+																											$author$project$Logic$App$Types$PropertyType,
+																											$author$project$Logic$App$Types$Property(str)))
+																								}));
+																					})
+																				]),
+																			_List_Nil)
+																		]))
+																]);
+														} else {
+															break _v0$14;
+														}
+													case 'DisplayType':
+														if (_v0.a.b.$ === 'Display') {
+															var _v16 = _v0.a;
+															var _v17 = _v16.a;
+															var _v18 = _v16.b;
+															var text_ = _v18.a;
+															return _List_fromArray(
+																[
+																	A2(
+																	$elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			$elm$html$Html$Attributes$class('output_option_box'),
+																			A2($elm$html$Html$Attributes$style, 'grid-template-columns', '2.1fr 3fr'),
+																			opacity
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			$elm$html$Html$label,
+																			_List_Nil,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$text('Text:')
+																				])),
+																			A2(
+																			$elm$html$Html$input,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$Attributes$placeholder('text'),
+																					$elm$html$Html$Attributes$value(text_),
+																					$elm$html$Html$Events$onInput(
+																					function (str) {
+																						return A2(
+																							$author$project$Logic$App$Msg$UpdatePatternOuptut,
+																							index,
+																							_Utils_update(
+																								pattern,
+																								{
+																									selectedOutput: $elm$core$Maybe$Just(
+																										_Utils_Tuple2(
+																											$author$project$Logic$App$Types$DisplayType,
+																											A2($author$project$Logic$App$Types$Display, str, '')))
+																								}));
+																					})
+																				]),
+																			_List_Nil)
+																		]))
+																]);
+														} else {
+															break _v0$14;
+														}
+													case 'MItemStackType':
+														if (_v0.a.b.$ === 'MItemStack') {
+															var _v19 = _v0.a;
+															var _v20 = _v19.a;
+															var _v21 = _v19.b;
+															var id = _v21.a;
+															var count = _v21.b;
+															return _List_fromArray(
+																[
+																	A2(
+																	$elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			$elm$html$Html$Attributes$class('output_option_box'),
+																			A2($elm$html$Html$Attributes$style, 'grid-template-columns', '2.1fr 3fr'),
+																			opacity
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			$elm$html$Html$label,
+																			_List_Nil,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$text('Item ID:')
+																				])),
+																			A2(
+																			$elm$html$Html$input,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$Attributes$placeholder('minecraft:stone'),
+																					$elm$html$Html$Attributes$value(id),
+																					$elm$html$Html$Events$onInput(
+																					function (str) {
+																						return A2(
+																							$author$project$Logic$App$Msg$UpdatePatternOuptut,
+																							index,
+																							_Utils_update(
+																								pattern,
+																								{
+																									selectedOutput: $elm$core$Maybe$Just(
+																										_Utils_Tuple2(
+																											$author$project$Logic$App$Types$MItemStackType,
+																											A2($author$project$Logic$App$Types$MItemStack, str, count)))
+																								}));
+																					})
+																				]),
+																			_List_Nil)
+																		]))
+																]);
+														} else {
+															break _v0$14;
+														}
+													case 'ItemStackType':
+														if (_v0.a.b.$ === 'ItemStack') {
+															var _v22 = _v0.a;
+															var _v23 = _v22.a;
+															var _v24 = _v22.b;
+															var id = _v24.a;
+															var count = _v24.b;
+															return _List_fromArray(
+																[
+																	A2(
+																	$elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			$elm$html$Html$Attributes$class('output_option_box'),
+																			A2($elm$html$Html$Attributes$style, 'grid-template-columns', '2.1fr 3fr'),
+																			opacity
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			$elm$html$Html$label,
+																			_List_Nil,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$text('Item ID:')
+																				])),
+																			A2(
+																			$elm$html$Html$input,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$Attributes$placeholder('minecraft:stone'),
+																					$elm$html$Html$Attributes$value(id),
+																					$elm$html$Html$Events$onInput(
+																					function (str) {
+																						return A2(
+																							$author$project$Logic$App$Msg$UpdatePatternOuptut,
+																							index,
+																							_Utils_update(
+																								pattern,
+																								{
+																									selectedOutput: $elm$core$Maybe$Just(
+																										_Utils_Tuple2(
+																											$author$project$Logic$App$Types$ItemStackType,
+																											A2($author$project$Logic$App$Types$ItemStack, str, count)))
+																								}));
+																					})
+																				]),
+																			_List_Nil)
+																		]))
+																]);
+														} else {
+															break _v0$14;
+														}
+													case 'MMatrixType':
+														if (_v0.a.b.$ === 'MMatrix') {
+															var _v25 = _v0.a;
+															var _v26 = _v25.a;
+															var s = _v25.b.a;
+															return _List_fromArray(
+																[
+																	A2(
+																	$elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			$elm$html$Html$Attributes$class('output_option_box'),
+																			A2($elm$html$Html$Attributes$style, 'grid-template-columns', '2.1fr 3fr'),
+																			opacity
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			$elm$html$Html$label,
+																			_List_Nil,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$text('Matrix:')
+																				])),
+																			A2(
+																			$elm$html$Html$input,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$Attributes$placeholder('...'),
+																					$elm$html$Html$Attributes$value(s),
+																					$elm$html$Html$Events$onInput(
+																					function (str) {
+																						return A2(
+																							$author$project$Logic$App$Msg$UpdatePatternOuptut,
+																							index,
+																							_Utils_update(
+																								pattern,
+																								{
+																									selectedOutput: $elm$core$Maybe$Just(
+																										_Utils_Tuple2(
+																											$author$project$Logic$App$Types$MMatrixType,
+																											$author$project$Logic$App$Types$MMatrix(str)))
+																								}));
+																					})
+																				]),
+																			_List_Nil)
+																		]))
+																]);
+														} else {
+															break _v0$14;
+														}
+													case 'MIotaTypeType':
+														if (_v0.a.b.$ === 'MIotaType') {
+															var _v27 = _v0.a;
+															var _v28 = _v27.a;
+															var s = _v27.b.a;
+															return _List_fromArray(
+																[
+																	A2(
+																	$elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			$elm$html$Html$Attributes$class('output_option_box'),
+																			A2($elm$html$Html$Attributes$style, 'grid-template-columns', '2.1fr 3fr'),
+																			opacity
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			$elm$html$Html$label,
+																			_List_Nil,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$text('IotaType:')
+																				])),
+																			A2(
+																			$elm$html$Html$input,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$Attributes$placeholder('hexcasting:number'),
+																					$elm$html$Html$Attributes$value(s),
+																					$elm$html$Html$Events$onInput(
+																					function (str) {
+																						return A2(
+																							$author$project$Logic$App$Msg$UpdatePatternOuptut,
+																							index,
+																							_Utils_update(
+																								pattern,
+																								{
+																									selectedOutput: $elm$core$Maybe$Just(
+																										_Utils_Tuple2(
+																											$author$project$Logic$App$Types$MIotaTypeType,
+																											$author$project$Logic$App$Types$MIotaType(str)))
+																								}));
+																					})
+																				]),
+																			_List_Nil)
+																		]))
+																]);
+														} else {
+															break _v0$14;
+														}
+													case 'MEntityTypeType':
+														if (_v0.a.b.$ === 'MEntityType') {
+															var _v29 = _v0.a;
+															var _v30 = _v29.a;
+															var s = _v29.b.a;
+															return _List_fromArray(
+																[
+																	A2(
+																	$elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			$elm$html$Html$Attributes$class('output_option_box'),
+																			A2($elm$html$Html$Attributes$style, 'grid-template-columns', '2.1fr 3fr'),
+																			opacity
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			$elm$html$Html$label,
+																			_List_Nil,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$text('EntityType:')
+																				])),
+																			A2(
+																			$elm$html$Html$input,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$Attributes$placeholder('minecraft:pig'),
+																					$elm$html$Html$Attributes$value(s),
+																					$elm$html$Html$Events$onInput(
+																					function (str) {
+																						return A2(
+																							$author$project$Logic$App$Msg$UpdatePatternOuptut,
+																							index,
+																							_Utils_update(
+																								pattern,
+																								{
+																									selectedOutput: $elm$core$Maybe$Just(
+																										_Utils_Tuple2(
+																											$author$project$Logic$App$Types$MEntityTypeType,
+																											$author$project$Logic$App$Types$MEntityType(str)))
+																								}));
+																					})
+																				]),
+																			_List_Nil)
+																		]))
+																]);
+														} else {
+															break _v0$14;
+														}
+													case 'MItemTypeType':
+														if (_v0.a.b.$ === 'MItemType') {
+															var _v31 = _v0.a;
+															var _v32 = _v31.a;
+															var s = _v31.b.a;
+															return _List_fromArray(
+																[
+																	A2(
+																	$elm$html$Html$div,
+																	_List_fromArray(
+																		[
+																			$elm$html$Html$Attributes$class('output_option_box'),
+																			A2($elm$html$Html$Attributes$style, 'grid-template-columns', '2.1fr 3fr'),
+																			opacity
+																		]),
+																	_List_fromArray(
+																		[
+																			A2(
+																			$elm$html$Html$label,
+																			_List_Nil,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$text('ItemType:')
+																				])),
+																			A2(
+																			$elm$html$Html$input,
+																			_List_fromArray(
+																				[
+																					$elm$html$Html$Attributes$placeholder('minecraft:stick'),
+																					$elm$html$Html$Attributes$value(s),
+																					$elm$html$Html$Events$onInput(
+																					function (str) {
+																						return A2(
+																							$author$project$Logic$App$Msg$UpdatePatternOuptut,
+																							index,
+																							_Utils_update(
+																								pattern,
+																								{
+																									selectedOutput: $elm$core$Maybe$Just(
+																										_Utils_Tuple2(
+																											$author$project$Logic$App$Types$MItemTypeType,
+																											$author$project$Logic$App$Types$MItemType(str)))
+																								}));
+																					})
+																				]),
+																			_List_Nil)
+																		]))
+																]);
+														} else {
+															break _v0$14;
 														}
 													default:
-														break _v0$4;
+														break _v0$14;
 												}
 											} else {
-												break _v0$4;
+												break _v0$14;
 											}
 										}
 										return _List_Nil;
@@ -22825,10 +26960,43 @@ var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProje
 		case 'Garbage':
 			var mishap = iota.a;
 			return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedGarbage(mishap);
-		default:
+		case 'OpenParenthesis':
 			var list = iota.a;
 			return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedOpenParenthesis(
 				A2($elm$core$Array$map, $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$simplifyIota, list));
+		case 'Identifier':
+			var id = iota.a;
+			return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedIdentifier(id);
+		case 'Display':
+			var text_ = iota.a;
+			var style_ = iota.b;
+			return A2($author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedDisplay, text_, style_);
+		case 'ItemStack':
+			var id = iota.a;
+			var count = iota.b;
+			return A2($author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedItemStack, id, count);
+		case 'Property':
+			var key = iota.a;
+			return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedProperty(key);
+		case 'MString':
+			var s = iota.a;
+			return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMString(s);
+		case 'MMatrix':
+			var s = iota.a;
+			return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMMatrix(s);
+		case 'MIotaType':
+			var s = iota.a;
+			return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMIotaType(s);
+		case 'MEntityType':
+			var s = iota.a;
+			return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMEntityType(s);
+		case 'MItemType':
+			var s = iota.a;
+			return $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMItemType(s);
+		default:
+			var id = iota.a;
+			var count = iota.b;
+			return A2($author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$SimplifiedMItemStack, id, count);
 	}
 };
 var $author$project$Logic$App$ImportExport$ImportExportProject$ImportExportProjectV1$simplifyCastingContext = function (castingContext) {

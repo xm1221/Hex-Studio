@@ -357,6 +357,86 @@ getAny iota =
     Just iota
 
 
+-- hexpose getters
+getIdentifier : Iota -> Maybe Iota
+getIdentifier iota =
+    case iota of
+        Identifier _ ->
+            Just iota
+
+        _ ->
+            Nothing
+
+
+getDisplay : Iota -> Maybe Iota
+getDisplay iota =
+    case iota of
+        Display _ _ ->
+            Just iota
+
+        _ ->
+            Nothing
+
+
+getItemStack : Iota -> Maybe Iota
+getItemStack iota =
+    case iota of
+        ItemStack _ _ ->
+            Just iota
+
+        _ ->
+            Nothing
+
+
+-- hexcellular getter
+getProperty : Iota -> Maybe Iota
+getProperty iota =
+    case iota of
+        Property _ ->
+            Just iota
+
+        _ ->
+            Nothing
+
+
+-- moreiotas getters
+getMString : Iota -> Maybe Iota
+getMString iota =
+    case iota of
+        MString _ -> Just iota
+        _ -> Nothing
+
+getMMatrix : Iota -> Maybe Iota
+getMMatrix iota =
+    case iota of
+        MMatrix _ -> Just iota
+        _ -> Nothing
+
+getMIotaType : Iota -> Maybe Iota
+getMIotaType iota =
+    case iota of
+        MIotaType _ -> Just iota
+        _ -> Nothing
+
+getMEntityType : Iota -> Maybe Iota
+getMEntityType iota =
+    case iota of
+        MEntityType _ -> Just iota
+        _ -> Nothing
+
+getMItemType : Iota -> Maybe Iota
+getMItemType iota =
+    case iota of
+        MItemType _ -> Just iota
+        _ -> Nothing
+
+getMItemStack : Iota -> Maybe Iota
+getMItemStack iota =
+    case iota of
+        MItemStack _ _ -> Just iota
+        _ -> Nothing
+
+
 getNumberOrList : Iota -> Maybe Iota
 getNumberOrList iota =
     case iota of
@@ -463,6 +543,39 @@ checkEquality iota1 iota2 =
 
         ( Entity entity1, Entity entity2 ) ->
             entity1 == entity2
+
+        -- hexpose iotas
+        ( Identifier id1, Identifier id2 ) ->
+            id1 == id2
+
+        ( Display t1 s1, Display t2 s2 ) ->
+            t1 == t2 && s1 == s2
+
+        ( ItemStack id1 c1, ItemStack id2 c2 ) ->
+            id1 == id2 && c1 == c2
+
+        -- hexcellular iota
+        ( Property p1, Property p2 ) ->
+            p1 == p2
+
+        -- moreiotas iotas
+        ( MString s1, MString s2 ) ->
+            s1 == s2
+
+        ( MMatrix m1, MMatrix m2 ) ->
+            m1 == m2
+
+        ( MIotaType t1, MIotaType t2 ) ->
+            t1 == t2
+
+        ( MEntityType e1, MEntityType e2 ) ->
+            e1 == e2
+
+        ( MItemType i1, MItemType i2 ) ->
+            i1 == i2
+
+        ( MItemStack id1 c1, MItemStack id2 c2 ) ->
+            id1 == id2 && c1 == c2
 
         _ ->
             iota1 == iota2

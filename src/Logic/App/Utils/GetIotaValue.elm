@@ -67,6 +67,39 @@ getIotaTypeAsString iota =
         GarbageType ->
             "Garbage"
 
+        -- hexpose iota types
+        IdentifierType ->
+            "Identifier"
+
+        DisplayType ->
+            "Display"
+
+        ItemStackType ->
+            "ItemStack"
+
+        -- hexcellular iota type
+        PropertyType ->
+            "Property"
+
+        -- moreiotas iota types
+        MStringType ->
+            "MString"
+
+        MMatrixType ->
+            "MMatrix"
+
+        MIotaTypeType ->
+            "MIotaType"
+
+        MEntityTypeType ->
+            "MEntityType"
+
+        MItemTypeType ->
+            "MItemType"
+
+        MItemStackType ->
+            "MItemStack"
+
 
 getIotaValueAsString : Iota -> String
 getIotaValueAsString iota =
@@ -174,6 +207,39 @@ getIotaValueAsString iota =
                         )
                     <|
                         Array.toList list
+
+        -- hexpose iotas
+        Identifier id ->
+            "\"" ++ id ++ "\""
+
+        Display text_ style_ ->
+            "\"" ++ text_ ++ "\""
+
+        ItemStack id count ->
+            id ++ " x" ++ String.fromFloat count
+
+        -- hexcellular iota
+        Property key ->
+            "Property \"" ++ key ++ "\""
+
+        -- moreiotas iotas
+        MString s ->
+            "\"" ++ s ++ "\""
+
+        MMatrix s ->
+            "Matrix[" ++ s ++ "]"
+
+        MIotaType s ->
+            "IotaType:" ++ s
+
+        MEntityType s ->
+            "EntityType:" ++ s
+
+        MItemType s ->
+            "ItemType:" ++ s
+
+        MItemStack id count ->
+            "MItemStack " ++ id ++ " x" ++ String.fromFloat count
 
 
 

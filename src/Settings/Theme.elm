@@ -62,3 +62,36 @@ iotaColorMap iota =
 
         OpenParenthesis _ ->
             "#4B4845"
+
+        -- hexpose iotas
+        Identifier _ ->
+            "#E6C24C"
+
+        Display _ _ ->
+            "#DB3F30"
+
+        ItemStack _ _ ->
+            "#FC0362"
+
+        -- hexcellular iota
+        Property _ ->
+            "#74C26C"
+
+        -- moreiotas iotas
+        MString _ ->
+            "#6BC76B"
+
+        MMatrix _ ->
+            "#6B8FC7"
+
+        MIotaType _ ->
+            "#C76B8F"
+
+        MEntityType _ ->
+            "#C7A66B"
+
+        MItemType _ ->
+            "#8FC76B"
+
+        MItemStack _ _ ->
+            "#C76B6B"

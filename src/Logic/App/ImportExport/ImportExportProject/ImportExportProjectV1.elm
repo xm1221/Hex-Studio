@@ -64,6 +64,19 @@ type SimplifiedIota
     | SimplifiedNull
     | SimplifiedGarbage Mishap
     | SimplifiedOpenParenthesis (Array SimplifiedIota)
+    -- hexpose iotas
+    | SimplifiedIdentifier String
+    | SimplifiedDisplay String String
+    | SimplifiedItemStack String Float
+    -- hexcellular iota
+    | SimplifiedProperty String
+    -- moreiotas iotas
+    | SimplifiedMString String
+    | SimplifiedMMatrix String
+    | SimplifiedMIotaType String
+    | SimplifiedMEntityType String
+    | SimplifiedMItemType String
+    | SimplifiedMItemStack String Float
 
 
 patternCodec : S.Codec e SimplifiedPattern
@@ -121,6 +134,39 @@ simplifyIota iota =
         OpenParenthesis list ->
             SimplifiedOpenParenthesis (Array.map simplifyIota list)
 
+        -- hexpose iotas
+        Identifier id ->
+            SimplifiedIdentifier id
+
+        Display text_ style_ ->
+            SimplifiedDisplay text_ style_
+
+        ItemStack id count ->
+            SimplifiedItemStack id count
+
+        -- hexcellular iota
+        Property key ->
+            SimplifiedProperty key
+
+        -- moreiotas iotas
+        MString s ->
+            SimplifiedMString s
+
+        MMatrix s ->
+            SimplifiedMMatrix s
+
+        MIotaType s ->
+            SimplifiedMIotaType s
+
+        MEntityType s ->
+            SimplifiedMEntityType s
+
+        MItemType s ->
+            SimplifiedMItemType s
+
+        MItemStack id count ->
+            SimplifiedMItemStack id count
+
 
 unSimplifyIota : Dict String ( String, Direction, Iota ) -> SimplifiedIota -> Iota
 unSimplifyIota macros simplifiedIota =
@@ -151,6 +197,39 @@ unSimplifyIota macros simplifiedIota =
 
         SimplifiedOpenParenthesis list ->
             OpenParenthesis (Array.map (unSimplifyIota macros) list)
+
+        -- hexpose iotas
+        SimplifiedIdentifier id ->
+            Identifier id
+
+        SimplifiedDisplay text_ style_ ->
+            Display text_ style_
+
+        SimplifiedItemStack id count ->
+            ItemStack id count
+
+        -- hexcellular iota
+        SimplifiedProperty key ->
+            Property key
+
+        -- moreiotas iotas
+        SimplifiedMString s ->
+            MString s
+
+        SimplifiedMMatrix s ->
+            MMatrix s
+
+        SimplifiedMIotaType s ->
+            MIotaType s
+
+        SimplifiedMEntityType s ->
+            MEntityType s
+
+        SimplifiedMItemType s ->
+            MItemType s
+
+        SimplifiedMItemStack id count ->
+            MItemStack id count
 
 
 patternArrayCodec : S.Codec e (Array SimplifiedPattern)
@@ -257,7 +336,7 @@ mishapCodec =
 iotaCodec : S.Codec e SimplifiedIota
 iotaCodec =
     S.customType
-        (\numberEncoder vectorEncoder booleanEncoder entityEncoder iotaListEncoder patternIotaEncoder nullEncoder garbageEncoder openParenthesisEncoder value ->
+        (\numberEncoder vectorEncoder booleanEncoder entityEncoder iotaListEncoder patternIotaEncoder nullEncoder garbageEncoder openParenthesisEncoder identifierEncoder displayEncoder itemStackEncoder propertyEncoder mStringEncoder mMatrixEncoder mIotaTypeEncoder mEntityTypeEncoder mItemTypeEncoder mItemStackEncoder value ->
             case value of
                 SimplifiedNumber number ->
                     numberEncoder number
@@ -285,6 +364,39 @@ iotaCodec =
 
                 SimplifiedOpenParenthesis list ->
                     openParenthesisEncoder list
+
+                -- hexpose iotas
+                SimplifiedIdentifier id ->
+                    identifierEncoder id
+
+                SimplifiedDisplay text_ style_ ->
+                    displayEncoder text_ style_
+
+                SimplifiedItemStack id count ->
+                    itemStackEncoder id count
+
+                -- hexcellular iota
+                SimplifiedProperty key ->
+                    propertyEncoder key
+
+                -- moreiotas iotas
+                SimplifiedMString s ->
+                    mStringEncoder s
+
+                SimplifiedMMatrix s ->
+                    mMatrixEncoder s
+
+                SimplifiedMIotaType s ->
+                    mIotaTypeEncoder s
+
+                SimplifiedMEntityType s ->
+                    mEntityTypeEncoder s
+
+                SimplifiedMItemType s ->
+                    mItemTypeEncoder s
+
+                SimplifiedMItemStack id count ->
+                    mItemStackEncoder id count
         )
         |> S.variant1 SimplifiedNumber S.float
         |> S.variant1 SimplifiedVector (S.triple S.float S.float S.float)
@@ -295,6 +407,19 @@ iotaCodec =
         |> S.variant0 SimplifiedNull
         |> S.variant1 SimplifiedGarbage mishapCodec
         |> S.variant1 SimplifiedOpenParenthesis (S.array (S.lazy (\() -> iotaCodec)))
+        -- hexpose iotas
+        |> S.variant1 SimplifiedIdentifier S.string
+        |> S.variant2 SimplifiedDisplay S.string S.string
+        |> S.variant2 SimplifiedItemStack S.string S.float
+        -- hexcellular iota
+        |> S.variant1 SimplifiedProperty S.string
+        -- moreiotas iotas
+        |> S.variant1 SimplifiedMString S.string
+        |> S.variant1 SimplifiedMMatrix S.string
+        |> S.variant1 SimplifiedMIotaType S.string
+        |> S.variant1 SimplifiedMEntityType S.string
+        |> S.variant1 SimplifiedMItemType S.string
+        |> S.variant2 SimplifiedMItemStack S.string S.float
         |> S.finishCustomType
 
 

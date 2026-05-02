@@ -75,6 +75,17 @@ type IotaType
     | PatternType
     | NullType
     | GarbageType
+    | IdentifierType
+    | DisplayType
+    | ItemStackType
+    | PropertyType
+    -- moreiotas iota types
+    | MStringType
+    | MMatrixType
+    | MIotaTypeType
+    | MEntityTypeType
+    | MItemTypeType
+    | MItemStackType
 
 
 type Iota
@@ -87,6 +98,19 @@ type Iota
     | Null
     | Garbage Mishap
     | OpenParenthesis (Array Iota)
+    -- hexpose iotas
+    | Identifier String
+    | Display String String
+    | ItemStack String Float
+    -- hexcellular iota
+    | Property String
+    -- moreiotas iotas
+    | MString String
+    | MMatrix String
+    | MIotaType String
+    | MEntityType String
+    | MItemType String
+    | MItemStack String Float
 
 
 type alias GridPoint =
